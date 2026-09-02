@@ -1,0 +1,286 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0" version="2.0">
+  <channel>
+    <title>CS229 Machine Learning — Unofficial Audio Preservation Edition</title>
+    <link>https://see.stanford.edu/Course/CS229</link>
+    <description>Andrew Ng's 20-lecture CS229 Machine Learning course, sourced from Stanford Engineering Everywhere and preserved as an audio-only edition without re-encoding. This independent preservation project is not endorsed by Stanford University or Andrew Ng.</description>
+    <language>en-us</language>
+    <copyright>Source lectures © Stanford University and/or identified rights holders; adaptation CC BY-NC-SA 4.0</copyright>
+    <generator>stanford-cs229-audio-feed deterministic generator</generator>
+    <atom:link href="https://smartnuf.github.io/cs229-unofficial-audio-feed/feed.xml" rel="self" type="application/rss+xml" />
+    <itunes:author>Andrew Ng (lecturer)</itunes:author>
+    <itunes:type>serial</itunes:type>
+    <itunes:explicit>false</itunes:explicit>
+    <itunes:summary>Andrew Ng's 20-lecture CS229 Machine Learning course, sourced from Stanford Engineering Everywhere and preserved as an audio-only edition without re-encoding. This independent preservation project is not endorsed by Stanford University or Andrew Ng.</itunes:summary>
+    <itunes:category text="Education" />
+    <itunes:image href="https://smartnuf.github.io/cs229-unofficial-audio-feed/cover.jpg" />
+    <podcast:guid>b5a6f6d6-25ea-59dc-bc91-d8ae1887d8c0</podcast:guid>
+    <podcast:medium>course</podcast:medium>
+    <podcast:license url="https://creativecommons.org/licenses/by-nc-sa/4.0/">cc-by-nc-sa-4.0</podcast:license>
+    <image>
+      <url>https://smartnuf.github.io/cs229-unofficial-audio-feed/cover.jpg</url>
+      <title>CS229 Machine Learning — Unofficial Audio Preservation Edition</title>
+      <link>https://see.stanford.edu/Course/CS229</link>
+    </image>
+    <item>
+      <title>Lecture 01 — Motivation and applications of machine learning</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture01.mp4</link>
+      <guid isPermaLink="false">urn:uuid:b504132c-3181-5bc1-99dd-b114c9454842</guid>
+      <description>Lecture 01 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture01.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture01.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture01.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>1</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:08:40</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture01.m4a" length="81818286" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture01.html" type="text/html" language="en-US" />
+    </item>
+    <item>
+      <title>Lecture 02 — Supervised learning and linear regression</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture02.mp4</link>
+      <guid isPermaLink="false">urn:uuid:a37c43cf-ee49-5ea1-a21d-2764677e959f</guid>
+      <description>Lecture 02 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture02.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture02.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture02.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>2</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:16:15</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture02.m4a" length="90871014" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture02.html" type="text/html" language="en-US" />
+    </item>
+    <item>
+      <title>Lecture 03 — Locally weighted and logistic regression</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture03.mp4</link>
+      <guid isPermaLink="false">urn:uuid:53e8a3cb-6c6c-57d5-b7ad-4d1a5ed1fc55</guid>
+      <description>Lecture 03 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture03.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture03.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture03.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>3</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:13:13</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture03.m4a" length="87256833" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture03.html" type="text/html" language="en-US" />
+    </item>
+    <item>
+      <title>Lecture 04 — Generalized linear models</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture04.mp4</link>
+      <guid isPermaLink="false">urn:uuid:ad5152d6-7c17-5d8f-9d80-63b7a0568071</guid>
+      <description>Lecture 04 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture04.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture04.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture04.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>4</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:13:06</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture04.m4a" length="87113618" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture04.html" type="text/html" language="en-US" />
+    </item>
+    <item>
+      <title>Lecture 05 — Generative learning algorithms</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture05.mp4</link>
+      <guid isPermaLink="false">urn:uuid:a7892082-6a91-5aa5-8925-04fa5041cce8</guid>
+      <description>Lecture 05 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture05.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture05.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture05.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>5</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:15:31</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture05.m4a" length="89982914" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture05.html" type="text/html" language="en-US" />
+    </item>
+    <item>
+      <title>Lecture 06 — Neural networks and SVM margins</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture06.mp4</link>
+      <guid isPermaLink="false">urn:uuid:48286d1b-44f2-5c85-9cdd-79be7b6d8159</guid>
+      <description>Lecture 06 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture06.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture06.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture06.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>6</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:13:09</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture06.m4a" length="87168405" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture06.html" type="text/html" language="en-US" />
+    </item>
+    <item>
+      <title>Lecture 07 — Optimal-margin classifiers and kernels</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture07.mp4</link>
+      <guid isPermaLink="false">urn:uuid:ca2fa0e2-995d-58d5-b3cd-f2a4ff8f4141</guid>
+      <description>Lecture 07 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture07.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture07.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture07.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>7</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:15:44</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture07.m4a" length="90249836" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture07.html" type="text/html" language="en-US" />
+    </item>
+    <item>
+      <title>Lecture 08 — Kernels, soft-margin SVM and SMO</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture08.mp4</link>
+      <guid isPermaLink="false">urn:uuid:fe90bdd9-63b4-5b8f-b6e8-81369ba48e89</guid>
+      <description>Lecture 08 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture08.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture08.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture08.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>8</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:17:18</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture08.m4a" length="92121490" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture08.html" type="text/html" language="en-US" />
+    </item>
+    <item>
+      <title>Lecture 09 — Learning theory and uniform convergence</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture09.mp4</link>
+      <guid isPermaLink="false">urn:uuid:7865c865-e941-5b1a-b391-32ac3902ac78</guid>
+      <description>Lecture 09 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture09.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture09.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture09.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>9</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:14:18</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture09.m4a" length="88543344" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture09.html" type="text/html" language="en-US" />
+    </item>
+    <item>
+      <title>Lecture 10 — VC dimension and model selection</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture10.mp4</link>
+      <guid isPermaLink="false">urn:uuid:05ffe7c6-62ed-5cb1-bfa6-a98443756bbf</guid>
+      <description>Lecture 10 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture10.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture10.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture10.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>10</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:12:56</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture10.m4a" length="86909446" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture10.html" type="text/html" language="en-US" />
+    </item>
+    <item>
+      <title>Lecture 11 — Diagnostics and practical machine learning advice</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture11.mp4</link>
+      <guid isPermaLink="false">urn:uuid:34258a2e-a778-5938-ad36-78682428be77</guid>
+      <description>Lecture 11 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture11.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture11.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture11.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>11</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:22:19</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture11.m4a" length="98091614" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture11.html" type="text/html" language="en-US" />
+    </item>
+    <item>
+      <title>Lecture 12 — K-means and expectation maximization</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture12.mp4</link>
+      <guid isPermaLink="false">urn:uuid:8e89cc1d-ea49-547f-83dd-c364157a4dc7</guid>
+      <description>Lecture 12 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture12.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture12.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture12.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>12</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:14:22</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture12.m4a" length="88622450" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture12.html" type="text/html" language="en-US" />
+    </item>
+    <item>
+      <title>Lecture 13 — Mixture models and factor analysis</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture13.mp4</link>
+      <guid isPermaLink="false">urn:uuid:b314d20a-26da-50c8-9dcf-43469176f49b</guid>
+      <description>Lecture 13 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture13.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture13.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture13.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>13</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:14:57</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture13.m4a" length="89309320" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture13.html" type="text/html" language="en-US" />
+    </item>
+    <item>
+      <title>Lecture 14 — Factor analysis and principal components</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture14.mp4</link>
+      <guid isPermaLink="false">urn:uuid:0c018680-e0ef-56d5-b7a4-14943dba8710</guid>
+      <description>Lecture 14 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture14.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture14.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture14.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>14</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:20:39</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture14.m4a" length="96114228" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture14.html" type="text/html" language="en-US" />
+    </item>
+    <item>
+      <title>Lecture 15 — SVD and independent component analysis</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture15.mp4</link>
+      <guid isPermaLink="false">urn:uuid:30d6b185-cc86-5167-8be0-eb39f469b99d</guid>
+      <description>Lecture 15 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture15.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture15.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture15.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>15</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:17:18</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture15.m4a" length="92106851" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture15.html" type="text/html" language="en-US" />
+    </item>
+    <item>
+      <title>Lecture 16 — Markov decision processes</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture16.mp4</link>
+      <guid isPermaLink="false">urn:uuid:fe01a0bc-3488-5660-866e-95a737602250</guid>
+      <description>Lecture 16 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture16.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture16.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture16.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>16</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:13:05</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture16.m4a" length="87098123" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture16.html" type="text/html" language="en-US" />
+    </item>
+    <item>
+      <title>Lecture 17 — Continuous-state reinforcement learning</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture17.mp4</link>
+      <guid isPermaLink="false">urn:uuid:c14022f1-83ff-5a5f-a1d8-0e8676d7b163</guid>
+      <description>Lecture 17 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture17.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture17.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture17.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>17</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:16:59</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture17.m4a" length="91745360" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture17.html" type="text/html" language="en-US" />
+    </item>
+    <item>
+      <title>Lecture 18 — LQR and dynamical systems</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture18.mp4</link>
+      <guid isPermaLink="false">urn:uuid:8b8f2c21-3d7f-522e-a69e-90bb1dcc0ead</guid>
+      <description>Lecture 18 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture18.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture18.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture18.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>18</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:16:37</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture18.m4a" length="91309941" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture18.html" type="text/html" language="en-US" />
+    </item>
+    <item>
+      <title>Lecture 19 — Kalman filtering and LQG</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture19.mp4</link>
+      <guid isPermaLink="false">urn:uuid:b7d5eadc-9adc-5840-a44b-7225bf7e6749</guid>
+      <description>Lecture 19 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture19.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture19.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture19.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>19</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:15:55</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture19.m4a" length="90459081" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture19.html" type="text/html" language="en-US" />
+    </item>
+    <item>
+      <title>Lecture 20 — POMDPs and policy search</title>
+      <link>https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture20.mp4</link>
+      <guid isPermaLink="false">urn:uuid:a4cecbba-ea7a-5306-8f05-d9f014a381b0</guid>
+      <description>Lecture 20 of Stanford CS229 Machine Learning, taught by Andrew Ng. Source lecture: https://see.stanford.edu/videos/courses/see/CS229/CS229-lecture20.mp4 Transcript (HTML): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture20.html Transcript (PDF): https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture20.pdf This is an unofficial audio-only adaptation from Stanford Engineering Everywhere; it is not endorsed by Stanford University or Andrew Ng. Licensed CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/</description>
+      <itunes:author>Andrew Ng (lecturer)</itunes:author>
+      <itunes:episode>20</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:duration>01:16:39</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <enclosure url="https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/lecture20.m4a" length="91348070" type="audio/mp4" />
+      <podcast:transcript url="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture20.html" type="text/html" language="en-US" />
+    </item>
+  </channel>
+</rss>
