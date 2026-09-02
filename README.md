@@ -15,6 +15,7 @@ feed and landing page are served by GitHub Pages.
 - Project page: <https://smartnuf.github.io/stanford-cs229-audio/>
 - RSS feed: <https://smartnuf.github.io/stanford-cs229-audio/feed.xml>
 - Release: <https://github.com/smartnuf/stanford-cs229-audio/releases/tag/audio-v1.0.0>
+- Zenodo preservation record: <https://doi.org/10.5281/zenodo.22261678>
 - Canonical Stanford course: <https://see.stanford.edu/Course/CS229>
 
 Podcast clients that support direct URL subscriptions can add the RSS URL
@@ -32,7 +33,7 @@ without this feed being submitted to a directory.
 - `scripts/check_online.py` — bounded, read-only deployment and link checks
 - `scripts/check_client.py` — traceable gPodder subscription/download and
   FFmpeg remote probe/seek/decode checks
-- `zenodo/` — proposed deposit metadata and guarded draft/publish instructions
+- `zenodo/` — published deposit metadata, DOI and verification instructions
 - `contact/castbox-restoration.md` — prepared but unsent restoration message
 - `docs/` — generated GitHub Pages site
 

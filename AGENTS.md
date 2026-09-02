@@ -35,6 +35,9 @@ lectures. GitHub Releases hold the versioned media; Git history never does.
 - Release assets: `CS229-lecture01.m4a` through `CS229-lecture20.m4a`, the
   canonical v1.0 ZIP, and the exact sidecars in `data/release-assets.json`
 - Canonical ZIP: `stanford-cs229-machine-learning-audio-edition-v1.0.zip`
+- Zenodo record: `https://zenodo.org/records/22261678`; DOI:
+  `10.5281/zenodo.22261678`. Version 1.0 is published and immutable; do not open
+  an edit or new version casually.
 - Podcast channel GUID: `469b7cc4-06ab-5668-9474-0d72dac20367`, derived
   once before first publication with UUIDv5 namespace
   `ead4c236-bf58-58c6-a2c6-a6b28d128cb6` and seed

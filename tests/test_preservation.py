@@ -53,6 +53,12 @@ class PreservationContractTests(unittest.TestCase):
         self.assertNotIn("orcid", zenodo["creators"][0])
         self.assertNotIn("affiliation", zenodo["creators"][0])
         self.assertIn("preservation curator/depositor", zenodo["description"])
+        record = json.loads((ROOT / "data" / "zenodo-record.json").read_text())
+        self.assertEqual(record["doi"], "10.5281/zenodo.22261678")
+        self.assertEqual(record["record_id"], 22261678)
+        self.assertEqual(record["file_count"], 8)
+        self.assertEqual(record["files"][0]["sha256"],
+                         "0c0e3bab4cf6f74a82f02a93f636c565fab02c3ab63332458ffeb58aee826953")
 
 
 if __name__ == "__main__":

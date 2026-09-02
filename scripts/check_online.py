@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bounded read-only checks for Pages, release assets, and Stanford links."""
+"""Bounded read-only checks for Pages, releases, Zenodo, and Stanford links."""
 
 from __future__ import annotations
 
@@ -240,6 +240,73 @@ def check_release(publication: dict, expected_release_commit: str) -> dict:
     }
 
 
+def check_zenodo(publication: dict) -> dict:
+    expected = json.loads((ROOT / "data" / "zenodo-record.json").read_text())
+    preservation = publication["preservation"]
+    response = request(expected["api_url"], method="GET", read_all=True)
+    require_status(response, {200}, "Zenodo record API")
+    try:
+        record = json.loads(response["body"])
+    except json.JSONDecodeError as error:
+        raise SemanticFailure("Zenodo record API returned invalid JSON") from error
+    metadata = record.get("metadata", {})
+    licence = metadata.get("license", {})
+    creators = [{key: value for key, value in row.items() if value is not None}
+                for row in metadata.get("creators", [])]
+    if (record.get("id") != expected["record_id"]
+            or record.get("doi") != expected["doi"]
+            or metadata.get("title") != publication["feed"]["title"]
+            or creators != [{"name": "smartnuf"}]
+            or not isinstance(licence, dict)
+            or licence.get("id") != publication["license"]["identifier"]):
+        raise SemanticFailure("Zenodo public identity/metadata mismatch")
+    expected_files = {row["name"]: row for row in expected["files"]}
+    actual_files = {row.get("key"): row for row in record.get("files", [])}
+    if set(actual_files) != set(expected_files):
+        raise SemanticFailure("Zenodo public file inventory mismatch")
+    files = []
+    master = None
+    for name in [row["name"] for row in expected["files"]]:
+        wanted, found = expected_files[name], actual_files[name]
+        url = found.get("links", {}).get("self")
+        if (found.get("size") != wanted["size_bytes"]
+                or found.get("checksum") != f"md5:{wanted['md5']}"
+                or url != wanted["url"]):
+            raise SemanticFailure(f"Zenodo public file metadata mismatch: {name}")
+        if name.endswith(".zip"):
+            master = check_asset(
+                url, wanted["size_bytes"], {"application/zip", "application/octet-stream"},
+                "Zenodo master archive")
+        else:
+            head = request(url)
+            require_status(head, {200}, f"Zenodo {name} HEAD")
+            if head["content_length"] != wanted["size_bytes"]:
+                raise SemanticFailure(f"Zenodo public file length mismatch: {name}")
+            files.append({
+                "name": name,
+                "url": url,
+                "size_bytes": wanted["size_bytes"],
+                "sha256": wanted["sha256"],
+                "md5": wanted["md5"],
+                "head_status": head["status"],
+                "content_type": head["content_type"],
+            })
+    doi = request(preservation["doi_url"], method="GET")
+    require_status(doi, {200}, "Zenodo DOI resolution")
+    if doi["final_url"].rstrip("/") != preservation["record_url"]:
+        raise SemanticFailure("Zenodo DOI does not resolve to the pinned record")
+    return {
+        "record_id": expected["record_id"],
+        "record_url": preservation["record_url"],
+        "doi": preservation["doi"],
+        "doi_url": preservation["doi_url"],
+        "api_status": response["status"],
+        "doi_status": doi["status"],
+        "files": files,
+        "master_archive": master,
+    }
+
+
 def record_failure(report: dict, operation) -> object | None:
     try:
         return operation()
@@ -274,6 +341,7 @@ def main() -> int:
         "compatibility_warnings": [],
         "documents": {},
         "release": None,
+        "zenodo": None,
         "enclosures": [],
         "master_archive": None,
         "source_links": [],
@@ -292,6 +360,7 @@ def main() -> int:
             report["documents"][name] = value
     report["release"] = record_failure(
         report, lambda: check_release(publication, expected_release_commit))
+    report["zenodo"] = record_failure(report, lambda: check_zenodo(publication))
 
     operations = []
     for episode in episodes:
@@ -354,6 +423,7 @@ def main() -> int:
         "result": report["result"],
         "documents": len(report["documents"]),
         "release_assets": len(report["release"]["assets"]) if report["release"] else 0,
+        "zenodo_files": (len(report["zenodo"]["files"]) + 1) if report["zenodo"] else 0,
         "enclosures": len(report["enclosures"]),
         "master_archive": report["master_archive"] is not None,
         "source_links": len(report["source_links"]),

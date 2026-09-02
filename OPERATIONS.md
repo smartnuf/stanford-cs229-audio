@@ -173,15 +173,18 @@ ordering acceptance separately.
 
 ## Zenodo
 
-`zenodo/README.md` and `zenodo/metadata.json` define the proposed deposit. A
-draft may be created and populated with the master ZIP plus separately readable
-metadata when authentication is available. Publishing/minting the DOI requires
-explicit human approval after reviewing the exact draft metadata, file list,
-hashes and residual uncertainties.
+Version 1.0 is published at <https://doi.org/10.5281/zenodo.22261678> and
+<https://zenodo.org/records/22261678>. `zenodo/metadata.json` preserves the
+submitted metadata and `data/zenodo-record.json` pins the verified public file
+inventory, sizes, SHA-256 and Zenodo MD5 values. The deposit contains the
+canonical master ZIP and seven separately readable sidecars; it does not
+duplicate the 20 individual GitHub podcast enclosures.
 
-After DOI publication, add the DOI to project documentation and appropriate
-feed metadata without changing episode GUIDs or enclosure URLs, then rerun the
-complete validation and deployment review.
+Treat the published record as immutable. Any correction or new version requires
+a fresh human checkpoint, an exact inventory review and complete validation.
+Never edit the v1.0 record merely to follow a moving repository branch. The
+feed's Atom `related` link may cite the DOI, but episode GUIDs and enclosure URLs
+remain independent and unchanged.
 
 ## Future feed-domain migration
 

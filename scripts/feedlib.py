@@ -126,7 +126,7 @@ def load_catalog(root: Path = ROOT) -> tuple[dict, list[Episode]]:
 def validate_catalog(publication: dict, episodes: list[Episode]) -> None:
     if publication.get("schema_version") != 1:
         raise ValueError("Unsupported publication schema")
-    required_sections = {"feed", "course", "media", "license", "identity"}
+    required_sections = {"feed", "course", "media", "preservation", "license", "identity"}
     if not required_sections.issubset(publication):
         raise ValueError("Publication metadata is incomplete")
     if [episode.number for episode in episodes] != list(range(1, 21)):
@@ -148,6 +148,15 @@ def validate_catalog(publication: dict, episodes: list[Episode]) -> None:
             raise ValueError(f"Feed {key} must use HTTPS")
     if urlparse(publication["media"]["base_url"]).scheme != "https":
         raise ValueError("Media base URL must use HTTPS")
+    preservation = publication["preservation"]
+    if preservation != {
+        "version": "1.0",
+        "zenodo_record_id": 22261678,
+        "doi": "10.5281/zenodo.22261678",
+        "doi_url": "https://doi.org/10.5281/zenodo.22261678",
+        "record_url": "https://zenodo.org/records/22261678",
+    }:
+        raise ValueError("Published Zenodo preservation identity changed")
     identity = publication["identity"]
     normalized_feed_url = re.sub(r"^https?://", "", publication["feed"]["feed_url"]).rstrip("/")
     if uuid.UUID(identity["channel_guid_namespace"]) != PODCAST_GUID_NAMESPACE:
@@ -193,6 +202,10 @@ def build_feed(publication: dict, episodes: list[Episode]) -> bytes:
     add_text(channel, "generator", "stanford-cs229-audio deterministic generator")
     ET.SubElement(channel, f"{{{NS_ATOM}}}link", {
         "href": feed["feed_url"], "rel": "self", "type": "application/rss+xml",
+    })
+    ET.SubElement(channel, f"{{{NS_ATOM}}}link", {
+        "href": publication["preservation"]["doi_url"], "rel": "related",
+        "type": "text/html", "title": "Zenodo preservation record",
     })
     add_text(channel, f"{{{NS_ITUNES}}}author", f"{course['lecturer']} (lecturer)")
     add_text(channel, f"{{{NS_ITUNES}}}type", feed["type"])
@@ -283,6 +296,7 @@ def build_index(publication: dict, episodes: list[Episode]) -> bytes:
           <p>{html.escape(feed['description'])}</p>
           <p><a class="subscribe" href="feed.xml">Open or copy the RSS feed</a></p>
           <p><a href="{html.escape(publication['media']['release_url'])}">Download the verified audio and canonical preservation ZIP</a></p>
+          <p><a href="{html.escape(publication['preservation']['doi_url'])}">Permanent preservation record: {html.escape(publication['preservation']['doi'])}</a></p>
           <p>Add the feed URL manually in a podcast application that supports URL subscriptions.</p>
         </div>
       </header>

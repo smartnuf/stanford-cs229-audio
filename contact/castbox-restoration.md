@@ -18,8 +18,7 @@ feed is now available:
 - Versioned audio release and source map:
   https://github.com/smartnuf/stanford-cs229-audio/releases/tag/audio-v1.0.0
 - Stanford source course: https://see.stanford.edu/Course/CS229
-- Preservation record/DOI: not yet published; the Zenodo upload bundle is
-  prepared locally, but no remote record has been created or DOI minted
+- Preservation record/DOI: https://doi.org/10.5281/zenodo.22261678
 
 The feed contains Lectures 01–20 in order. The M4As were produced by copying
 the AAC-LC streams from Stanford Engineering Everywhere's complete source MP4s
@@ -43,6 +42,5 @@ Thank you.
 ## Operator notes — not part of the message
 
 - Attach or link `provenance/source-map.csv` if requested.
-- Replace the Zenodo line only after a DOI has actually been published.
 - Confirm the live feed and release checks still pass immediately before use.
 - Do not send or submit the feed during this project.

@@ -29,6 +29,13 @@
     "base_url": "https://github.com/smartnuf/stanford-cs229-audio/releases/download/audio-v1.0.0/",
     "mime_type": "audio/mp4"
   },
+  "preservation": {
+    "version": "1.0",
+    "zenodo_record_id": 22261678,
+    "doi": "10.5281/zenodo.22261678",
+    "doi_url": "https://doi.org/10.5281/zenodo.22261678",
+    "record_url": "https://zenodo.org/records/22261678"
+  },
   "license": {
     "name": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International",
     "short_name": "CC BY-NC-SA 4.0",

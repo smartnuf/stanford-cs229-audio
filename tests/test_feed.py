@@ -103,6 +103,10 @@ class FeedTests(unittest.TestCase):
         assert licence is not None
         self.assertEqual(licence.text, "cc-by-nc-sa-4.0")
         self.assertEqual(licence.get("url"), "https://creativecommons.org/licenses/by-nc-sa/4.0/")
+        related = [node for node in self.channel.findall(f"{{{feedlib.NS_ATOM}}}link")
+                   if node.get("rel") == "related"]
+        self.assertEqual(len(related), 1)
+        self.assertEqual(related[0].get("href"), "https://doi.org/10.5281/zenodo.22261678")
         description = self.channel.findtext("description", "")
         self.assertIn("Stanford Engineering Everywhere", description)
         self.assertIn("not endorsed", description)

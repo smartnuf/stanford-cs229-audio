@@ -31,6 +31,8 @@ EXPECTED_LAST_GUID = "urn:uuid:a4cecbba-ea7a-5306-8f05-d9f014a381b0"
 EXPECTED_COVER_SHA256 = "771c71f6720e573bf3aaa9190ff37794873a893d99de05683f2e4da370756c06"
 EXPECTED_MASTER_ZIP_SIZE = 1_798_288_244
 EXPECTED_MASTER_ZIP_SHA256 = "0c0e3bab4cf6f74a82f02a93f636c565fab02c3ab63332458ffeb58aee826953"
+EXPECTED_ZENODO_DOI = "10.5281/zenodo.22261678"
+EXPECTED_ZENODO_RECORD_ID = 22261678
 FORBIDDEN_SUFFIXES = {
     ".m4a", ".mp4", ".m4v", ".mov", ".zip", ".tar", ".tgz", ".gz", ".xz",
     ".p12", ".pfx", ".pem", ".key",
@@ -215,6 +217,54 @@ def validate_manifests(root: Path = ROOT) -> dict:
                      "neither is represented as having authored or endorsed"):
         fail(required not in zenodo.get("description", ""),
              "Zenodo description lacks role/non-endorsement wording")
+    preservation = publication["preservation"]
+    zenodo_record = json.loads((root / "data" / "zenodo-record.json").read_text())
+    fail(zenodo_record.get("result") != "pass" or zenodo_record.get("schema_version") != 1,
+         "Zenodo public verification record is not passing")
+    fail(zenodo_record.get("record_id") != EXPECTED_ZENODO_RECORD_ID
+         or zenodo_record.get("doi") != EXPECTED_ZENODO_DOI
+         or zenodo_record.get("record_url") != preservation["record_url"]
+         or zenodo_record.get("doi_url") != preservation["doi_url"],
+         "Zenodo public identity mismatch")
+    fail(zenodo_record.get("creator") != {
+        "name": "smartnuf", "orcid": None, "affiliation": None,
+        "role": "preservation curator/depositor",
+    }, "Zenodo public curator identity mismatch")
+    zenodo_files = zenodo_record.get("files", [])
+    fail(zenodo_record.get("file_count") != 8 or len(zenodo_files) != 8,
+         "Zenodo public file count mismatch")
+    expected_zenodo_names = expected_support_names + ["ZENODO-METADATA.json"]
+    fail([row.get("name") for row in zenodo_files] != expected_zenodo_names,
+         "Zenodo public file inventory/order mismatch")
+    release_by_name = {row["name"]: row for row in assets}
+    for row in zenodo_files:
+        name = row["name"]
+        fail(not re.fullmatch(r"[0-9a-f]{32}", row.get("md5", "")),
+             f"Invalid Zenodo MD5: {name}")
+        fail(row.get("url") !=
+             f"https://zenodo.org/api/records/{EXPECTED_ZENODO_RECORD_ID}/files/{name}/content",
+             f"Unexpected Zenodo public file URL: {name}")
+        if name == "ZENODO-METADATA.json":
+            fail(row.get("sha256") != hashlib.sha256(
+                (root / "zenodo" / "metadata.json").read_bytes()).hexdigest()
+                or row.get("size_bytes") != (root / "zenodo" / "metadata.json").stat().st_size,
+                "Published Zenodo metadata sidecar mismatch")
+        else:
+            expected_row = release_by_name[name]
+            fail(row.get("size_bytes") != expected_row["size_bytes"]
+                 or row.get("sha256") != expected_row["sha256"],
+                 f"Published Zenodo file differs from release contract: {name}")
+    verification = zenodo_record.get("verification", {})
+    for key, value in {
+        "public_api_metadata": "pass",
+        "doi_resolution": "pass",
+        "head_lengths": "pass_8_of_8",
+        "server_md5": "pass_8_of_8",
+        "sidecar_sha256_downloads": "pass_7_of_7",
+        "master_zip_first_byte_range": "pass_206",
+        "master_zip_last_byte_range": "pass_206",
+    }.items():
+        fail(verification.get(key) != value, f"Zenodo verification evidence mismatch: {key}")
     return {
         "episodes": len(episodes),
         "total_enclosure_bytes": sum(episode.size_bytes for episode in episodes),
@@ -226,6 +276,8 @@ def validate_manifests(root: Path = ROOT) -> dict:
         "publication_status": publication_status,
         "release_commit": release_commit,
         "master_zip_sha256": master["sha256"],
+        "zenodo_record_id": zenodo_record["record_id"],
+        "zenodo_doi": zenodo_record["doi"],
     }
 
 
@@ -276,6 +328,12 @@ def validate_feed(root: Path = ROOT) -> dict:
     fail(self_link is None or self_link.get("rel") != "self"
          or self_link.get("type") != "application/rss+xml"
          or self_link.get("href") != feed["feed_url"], "Atom self link mismatch")
+    related_links = [node for node in channel.findall(f"{{{NS_ATOM}}}link")
+                     if node.get("rel") == "related"]
+    fail(len(related_links) != 1
+         or related_links[0].get("href") != publication["preservation"]["doi_url"]
+         or related_links[0].get("type") != "text/html",
+         "Atom Zenodo preservation link mismatch")
     image = channel.find(f"{{{NS_ITUNES}}}image")
     fail(image is None or image.get("href") != feed["artwork_url"], "Artwork URL mismatch")
     for label, url in (("feed", feed["feed_url"]), ("artwork", feed["artwork_url"]),
@@ -342,6 +400,8 @@ def validate_generated_site(root: Path = ROOT) -> dict:
     fail(index.count("<li>") != 20, "Landing page must list exactly 20 generated lectures")
     fail(publication["feed"]["feed_url"].rsplit("/", 1)[-1] not in index,
          "Landing page does not link the feed")
+    fail(publication["preservation"]["doi_url"] not in index,
+         "Landing page does not link the Zenodo preservation record")
     return {"generated_files": len(expected), "artwork": {
         "width": width, "height": height, "components": components, "sha256": cover_hash}}
 

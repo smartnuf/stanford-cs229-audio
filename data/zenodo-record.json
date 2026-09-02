@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "result": "pass",
+  "version": "1.0",
+  "published_date": "2026-09-02",
+  "verified_at": "2026-09-02T21:44:32.298732+00:00",
+  "metadata_source_commit": "13183006a7bbebcc505c1e3a18db881c63be9969",
+  "record_id": 22261678,
+  "record_url": "https://zenodo.org/records/22261678",
+  "api_url": "https://zenodo.org/api/records/22261678",
+  "doi": "10.5281/zenodo.22261678",
+  "doi_url": "https://doi.org/10.5281/zenodo.22261678",
+  "creator": {
+    "name": "smartnuf",
+    "orcid": null,
+    "affiliation": null,
+    "role": "preservation curator/depositor"
+  },
+  "file_count": 8,
+  "files": [
+    {
+      "name": "stanford-cs229-machine-learning-audio-edition-v1.0.zip",
+      "size_bytes": 1798288244,
+      "sha256": "0c0e3bab4cf6f74a82f02a93f636c565fab02c3ab63332458ffeb58aee826953",
+      "md5": "96759ff269ac26ad7f17eb5d7f28dfa3",
+      "url": "https://zenodo.org/api/records/22261678/files/stanford-cs229-machine-learning-audio-edition-v1.0.zip/content"
+    },
+    {
+      "name": "stanford-cs229-machine-learning-audio-edition-v1.0.zip.sha256",
+      "size_bytes": 121,
+      "sha256": "a6a4aebfcf01cfa4bdb69139d5ba10c56f1a23c95cf98bb2623b89383821757a",
+      "md5": "0228f3d62a19af6c30a8cfaf9f5bf4f1",
+      "url": "https://zenodo.org/api/records/22261678/files/stanford-cs229-machine-learning-audio-edition-v1.0.zip.sha256/content"
+    },
+    {
+      "name": "MANIFEST.json",
+      "size_bytes": 35624,
+      "sha256": "271f42d6a30870eb80091192a349ca5ea8b65b62cbcc5d83f1fba2e6c26eae9a",
+      "md5": "c77a94ad5823d75276a5fa5661d2991e",
+      "url": "https://zenodo.org/api/records/22261678/files/MANIFEST.json/content"
+    },
+    {
+      "name": "SHA256SUMS",
+      "size_bytes": 2153,
+      "sha256": "76eada51a636610223f0b6210ea1877da6e3f6917580e0c9357d8569dbc34ab7",
+      "md5": "c948fdb9021fad0005eba3264a869466",
+      "url": "https://zenodo.org/api/records/22261678/files/SHA256SUMS/content"
+    },
+    {
+      "name": "README.md",
+      "size_bytes": 969,
+      "sha256": "e6717e814a80dc2c892ebd8eafc029d535c8b2e06868a376422e8277d93ec0c0",
+      "md5": "3bad01b5e028ad724749862260eaa741",
+      "url": "https://zenodo.org/api/records/22261678/files/README.md/content"
+    },
+    {
+      "name": "LICENSE.md",
+      "size_bytes": 899,
+      "sha256": "bdbe3111107c38df55ec31f48949036782e1e5f015943b8396920fd129f156be",
+      "md5": "a33ae849f11900202e4ace3209dd3840",
+      "url": "https://zenodo.org/api/records/22261678/files/LICENSE.md/content"
+    },
+    {
+      "name": "PROVENANCE.md",
+      "size_bytes": 2425,
+      "sha256": "957dfabcd9dbf4a118a9752bb645b9e5c199ecfc54cb61731dbb5e300f802130",
+      "md5": "6a56e7c4f324180e079050f2ff02eed5",
+      "url": "https://zenodo.org/api/records/22261678/files/PROVENANCE.md/content"
+    },
+    {
+      "name": "ZENODO-METADATA.json",
+      "size_bytes": 2203,
+      "sha256": "f2a3d67396cae99468a9c91f3328fe17cfbb4e862365b3460dde1ffb5eb53a02",
+      "md5": "97f7eb59ddf38aae4a607c79d1f23360",
+      "url": "https://zenodo.org/api/records/22261678/files/ZENODO-METADATA.json/content"
+    }
+  ],
+  "verification": {
+    "public_api_metadata": "pass",
+    "doi_resolution": "pass",
+    "head_lengths": "pass_8_of_8",
+    "server_md5": "pass_8_of_8",
+    "sidecar_sha256_downloads": "pass_7_of_7",
+    "master_zip_first_byte_range": "pass_206",
+    "master_zip_last_byte_range": "pass_206"
+  }
+}

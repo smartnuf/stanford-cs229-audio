@@ -1,8 +1,15 @@
-# Zenodo deposit procedure and publication gate
+# Published Zenodo v1.0 deposit
 
-`metadata.json` is the exact proposed legacy Zenodo deposit metadata. Zenodo's
-official API classifies `upload_type: video` as “Video/Audio”; its current
-licence vocabulary confirms `cc-by-nc-sa-4.0`.
+Version 1.0 was published on 2026-09-02:
+
+- DOI: <https://doi.org/10.5281/zenodo.22261678>
+- Record: <https://zenodo.org/records/22261678>
+
+`metadata.json` is the exact submitted legacy Zenodo deposit metadata. Zenodo's
+API classifies `upload_type: video` as “Video/Audio”; the record uses
+`cc-by-nc-sa-4.0`. The sole creator entry is the preservation
+curator/depositor `smartnuf`, with no supplied ORCID or affiliation. Andrew Ng
+and Stanford Engineering Everywhere retain their separately stated roles.
 
 The prepared deposit bundle contains only:
 
@@ -15,7 +22,7 @@ The prepared deposit bundle contains only:
 7. `PROVENANCE.md`
 8. `ZENODO-METADATA.json`
 
-Create it outside Git with:
+Reconstruct the exact local upload bundle outside Git with:
 
 ```bash
 python scripts/prepare_zenodo.py \
@@ -30,24 +37,8 @@ the output directory; the local verification report is deliberately separate,
 so selecting the whole upload directory cannot accidentally add it to Zenodo.
 All three paths must be outside the Git repository.
 
-No Zenodo CLI or credential is assumed. If an access token is configured later,
-use Zenodo's official deposition API over HTTPS with the token only in the
-`Authorization: Bearer` header—never in a URL, command log or repository.
-For draft preparation, use a least-privilege token with `deposit:write` but
-without `deposit:actions`; the latter permits publication and must not be made
-available until the explicit DOI-publication approval checkpoint.
-
-1. `POST https://zenodo.org/api/deposit/depositions` to create an empty draft.
-2. Upload exactly the eight files listed by the generated report
-   to the draft's returned bucket URL.
-3. `PUT` the exact object in `metadata.json` to the draft deposition endpoint.
-4. Read the draft back and compare its metadata, file names, sizes and checksums
-   with the local report.
-5. Stop and present the exact public metadata, file inventory/checksums and any
-   residual uncertainty for explicit human approval.
-6. Only after approval, `POST` the draft's `links.publish` endpoint. Publishing
-   registers the DOI and is intentionally not automated by this repository.
-
-Zenodo's sandbox uses separate credentials and does not authorize production
-publication. Never reserve or cite a DOI as published until the record is
-actually published and independently retrievable.
+The public API representation, file inventory and checksums are pinned in
+`../data/zenodo-record.json`. Re-verification should retrieve the unauthenticated
+record API, compare all eight server sizes and MD5 values, download and SHA-256
+the seven small sidecars, and issue bounded first/last-byte range requests to
+the master ZIP. Do not edit or create a new version without explicit approval.

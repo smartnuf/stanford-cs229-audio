@@ -8,6 +8,7 @@
     <copyright>Source lectures © Stanford University and/or identified rights holders; adaptation CC BY-NC-SA 4.0</copyright>
     <generator>stanford-cs229-audio deterministic generator</generator>
     <atom:link href="https://smartnuf.github.io/stanford-cs229-audio/feed.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://doi.org/10.5281/zenodo.22261678" rel="related" type="text/html" title="Zenodo preservation record" />
     <itunes:author>Andrew Ng (lecturer)</itunes:author>
     <itunes:type>serial</itunes:type>
     <itunes:explicit>false</itunes:explicit>
