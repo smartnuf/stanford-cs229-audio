@@ -45,6 +45,10 @@ lectures. GitHub Releases hold the versioned media; Git history never does.
 
 Explicit human approval is required before:
 
+- creating the initial public repository, pushing its first public history,
+  uploading/publishing its first release, or activating Pages, unless the
+  current execution request already explicitly authorizes the exact target and
+  allowlisted inventory;
 - publishing a Zenodo record or otherwise minting a DOI;
 - disclosing a new public contact email;
 - overwriting/deleting an existing remote repository, release, asset or record;
@@ -55,6 +59,12 @@ Explicit human approval is required before:
 A Zenodo draft may be created and populated when existing authentication is
 available. Its exact metadata, inventory and hashes must be shown for approval
 before publication.
+
+The v1.0 execution was explicitly authorized on 2026-09-02 for public repository
+`smartnuf/stanford-cs229-audio`, release tag `audio-v1.0.0`, the 27 files in
+`data/release-assets.json`, and GitHub Pages from `main` `/docs`. That grant does
+not authorize overwriting/deleting remote objects, changing bytes or identities,
+publishing Zenodo, sending correspondence, or directory submission.
 
 ## Required validation
 

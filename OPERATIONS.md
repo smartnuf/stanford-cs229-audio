@@ -4,6 +4,10 @@ This runbook is subordinate to `AGENTS.md`. It never authorizes overwriting an
 existing remote object, publishing a Zenodo record, sending correspondence or
 submitting the feed to a directory.
 
+Initial public repository/release/Pages mutation requires an explicit grant for
+the exact owner, repository, tag and file allowlist. The 2026-09-02 v1.0 grant
+is recorded in `AGENTS.md`; it is narrow and is not reusable for later versions.
+
 ## Validate the small repository
 
 ```bash
