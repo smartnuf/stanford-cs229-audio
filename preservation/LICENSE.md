@@ -10,8 +10,8 @@ https://see.stanford.edu/UsingSEE
 
 https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
 
-This independently prepared audio-only adaptation, its added metadata, and its
-original cover artwork are distributed under the same CC BY-NC-SA 4.0 licence.
+This independently prepared audio-only adaptation and its added metadata are
+distributed under the same CC BY-NC-SA 4.0 licence.
 Reuse must provide appropriate attribution, identify changes, remain
 non-commercial, and distribute adaptations under the same licence.
 

@@ -1,4 +1,4 @@
-# Stanford CS229 Machine Learning — Unofficial Audio Preservation Edition v1.0
+# CS229 Machine Learning — Unofficial Audio Preservation Edition v1.0
 
 This package preserves the audio from 20 Stanford Engineering Everywhere
 CS229 Machine Learning lectures taught by Andrew Ng. It is an independently

@@ -71,6 +71,19 @@ prove that neither the tag nor release exists. Supply each asset by explicit
 path—never by a broad glob. A failed partial creation is reviewed asset by
 asset; do not overwrite or delete it without human authorization.
 
+Before creating even a draft, open repository **Settings**, find **Releases**,
+and select **Enable release immutability**. GitHub applies this only to future
+releases. Create a draft, upload and verify all 27 allowlisted assets, then
+publish it. Do not create a mutable release and enable the setting afterward.
+After publication, the release API must report `immutable: true`, every asset
+must expose the exact expected `sha256:` digest and browser URL, and the tag ref
+must resolve (peeling an annotated tag if necessary) to the intended commit.
+Run the first check with `--expected-release-commit` set to that full SHA. Then
+add that SHA as `media.release_commit` in `data/publication.json` in the first
+post-release metadata commit. This checked-in pin deliberately differs from a
+later main/Pages SHA (for example after adding a Zenodo DOI) and keeps scheduled
+release verification stable.
+
 Recovery starts from the canonical master ZIP and its checksum. Extract into a
 new directory, run the archive validator, and compare the 20 individual release
 assets with the master `audio/` hashes. Never replace a published filename with
@@ -89,11 +102,31 @@ test -z "$(git status --porcelain=v1)"
 ```
 
 The online checker requires exact live feed/site/artwork bytes; the exact public
-release inventory and any GitHub-provided SHA-256 digests; source/transcript
-reachability; and exact length, HTTPS redirect, MIME compatibility, HEAD (or an
-equivalent ranged probe), and first/last `206` byte ranges for every enclosure
-and the master ZIP. Exit 1 is a semantic failure; exit 2 is bounded network
-unavailability.
+immutable release inventory and mandatory GitHub SHA-256 digests; source and
+transcript reachability; actual successful `HEAD`; exact length; HTTPS
+redirects; an audio-specific M4A content type; and first/last `206` byte ranges
+for every enclosure and the master ZIP. It resolves the release tag to the
+separately pinned release commit. Exit 1 is a semantic failure; exit 2 is
+bounded network unavailability.
+
+Tie every external status to the same full SHA:
+
+```bash
+EXPECTED_SHA="$(git rev-parse HEAD)"
+test "$(gh api repos/smartnuf/stanford-cs229-audio/commits/main --jq .sha)" = "$EXPECTED_SHA"
+gh run list --repo smartnuf/stanford-cs229-audio --workflow validate.yml \
+  --commit "$EXPECTED_SHA" --json headSha,status,conclusion,url
+gh api repos/smartnuf/stanford-cs229-audio/pages/builds/latest \
+  --jq '{commit: .commit, status: .status}'
+python scripts/check_online.py --expected-release-commit \
+  "$(python -c 'import json; print(json.load(open("data/publication.json"))["media"]["release_commit"])')" \
+  --output online-report.json
+```
+
+The online report records the peeled tag target, release immutability, asset
+digests, actual content types, headers and range results. Remote main, CI
+`headSha` and the Pages build commit must equal `EXPECTED_SHA`; the tag target
+must equal the separately pinned `media.release_commit`.
 
 If GitHub Release delivery fails range or media compatibility, do not advertise
 the feed. Preserve the release and recommend Cloudflare R2 behind a future

@@ -20,15 +20,25 @@ Create it outside Git with:
 ```bash
 python scripts/prepare_zenodo.py \
   --build-dir /ABSOLUTE/PATH/TO/build \
-  --output-dir /ABSOLUTE/NEW/PATH/zenodo-draft
+  --output-dir /ABSOLUTE/NEW/PATH/zenodo-upload \
+  --report /ABSOLUTE/NEW/PATH/zenodo-deposit-report.json
 ```
+
+The script first proves that all 27 candidate release files in the selected
+build match `data/release-assets.json`. It writes only the eight upload files to
+the output directory; the local verification report is deliberately separate,
+so selecting the whole upload directory cannot accidentally add it to Zenodo.
+All three paths must be outside the Git repository.
 
 No Zenodo CLI or credential is assumed. If an access token is configured later,
 use Zenodo's official deposition API over HTTPS with the token only in the
 `Authorization: Bearer` header—never in a URL, command log or repository.
+For draft preparation, use a least-privilege token with `deposit:write` but
+without `deposit:actions`; the latter permits publication and must not be made
+available until the explicit DOI-publication approval checkpoint.
 
 1. `POST https://zenodo.org/api/deposit/depositions` to create an empty draft.
-2. Upload exactly the eight files listed by the generated `deposit-report.json`
+2. Upload exactly the eight files listed by the generated report
    to the draft's returned bucket URL.
 3. `PUT` the exact object in `metadata.json` to the draft deposition endpoint.
 4. Read the draft back and compare its metadata, file names, sizes and checksums

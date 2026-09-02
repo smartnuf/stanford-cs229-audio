@@ -180,7 +180,7 @@ def main() -> int:
     manifest = {
         "schema_version": 1,
         "edition": {
-            "name": "Stanford CS229 Machine Learning — Unofficial Audio Preservation Edition",
+            "name": "CS229 Machine Learning — Unofficial Audio Preservation Edition",
             "version": "1.0",
             "package_name": PACKAGE_NAME,
             "non_commercial": True,

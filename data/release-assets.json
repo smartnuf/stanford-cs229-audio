@@ -124,38 +124,38 @@
     {
       "name": "stanford-cs229-machine-learning-audio-edition-v1.0.zip",
       "role": "master_archive",
-      "sha256": "9a4403e05e68ef83f8c311a9fa8ca7b172268d61ce1b909ed97b239806566277",
-      "size_bytes": 1798288291
+      "sha256": "0c0e3bab4cf6f74a82f02a93f636c565fab02c3ab63332458ffeb58aee826953",
+      "size_bytes": 1798288244
     },
     {
       "name": "stanford-cs229-machine-learning-audio-edition-v1.0.zip.sha256",
       "role": "master_checksum",
-      "sha256": "620b8d330bc8d3a6ae87cd6ed56ee85902477f2e40cd30b197246ab6a53e91d6",
+      "sha256": "a6a4aebfcf01cfa4bdb69139d5ba10c56f1a23c95cf98bb2623b89383821757a",
       "size_bytes": 121
     },
     {
       "name": "MANIFEST.json",
       "role": "metadata",
-      "sha256": "4f6c8c32ff73f294c84995fb40e6c3a766baf4e67d7117b929fd7c0ca3279d72",
-      "size_bytes": 35633
+      "sha256": "271f42d6a30870eb80091192a349ca5ea8b65b62cbcc5d83f1fba2e6c26eae9a",
+      "size_bytes": 35624
     },
     {
       "name": "SHA256SUMS",
       "role": "checksums",
-      "sha256": "1696504a866aca4824cb931c35b2caf478cbdb56043c6d979a70de6d97ddf579",
+      "sha256": "76eada51a636610223f0b6210ea1877da6e3f6917580e0c9357d8569dbc34ab7",
       "size_bytes": 2153
     },
     {
       "name": "README.md",
       "role": "documentation",
-      "sha256": "73b1999bd0251f04b622de67fb53efe0743c15adc4ae1b61abf8addede8c51d9",
-      "size_bytes": 978
+      "sha256": "e6717e814a80dc2c892ebd8eafc029d535c8b2e06868a376422e8277d93ec0c0",
+      "size_bytes": 969
     },
     {
       "name": "LICENSE.md",
       "role": "documentation",
-      "sha256": "479da36e8f94ee676643117766ab846df494b6a7caae0fea34dbca4795cd42cd",
-      "size_bytes": 928
+      "sha256": "bdbe3111107c38df55ec31f48949036782e1e5f015943b8396920fd129f156be",
+      "size_bytes": 899
     },
     {
       "name": "PROVENANCE.md",

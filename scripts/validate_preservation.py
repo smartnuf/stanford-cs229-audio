@@ -11,6 +11,7 @@ import zipfile
 from pathlib import Path, PurePosixPath
 
 from build_preservation import FIXED_ZIP_TIME, PACKAGE_NAME, ZIP_ASSET_LIMIT, ZIP_NAME
+from feedlib import ROOT
 
 
 def sha256(path: Path) -> str:
@@ -57,6 +58,10 @@ def main() -> int:
     tree = args.tree.resolve()
     extract_dir = args.extract_dir.resolve()
     report_path = args.report.resolve()
+    if extract_dir == ROOT or ROOT in extract_dir.parents:
+        raise ValueError("Extraction output must be outside the Git repository")
+    if report_path == ROOT or ROOT in report_path.parents:
+        raise ValueError("Validation report must be outside the Git repository")
     if extract_dir.exists() or extract_dir.is_symlink():
         raise FileExistsError(f"Refusing to extract over existing path: {extract_dir}")
     if report_path.exists() or report_path.is_symlink():
@@ -112,10 +117,21 @@ def main() -> int:
             raise ValueError(f"Internal checksum mismatch: {relative}")
 
     manifest = json.loads((extracted / "MANIFEST.json").read_text(encoding="utf-8"))
+    if manifest.get("edition", {}).get("name") != (
+            "CS229 Machine Learning — Unofficial Audio Preservation Edition"):
+        raise ValueError("Manifest edition title mismatch")
     if manifest.get("media_count") != 20 or manifest.get("aggregate_media_size_bytes") != 1_798_240_224:
         raise ValueError("Manifest collection totals mismatch")
     if [row.get("lecture") for row in manifest.get("records", [])] != list(range(1, 21)):
         raise ValueError("Manifest lecture sequence mismatch")
+    for number, row in enumerate(manifest["records"], start=1):
+        relative = f"audio/CS229-lecture{number:02d}.m4a"
+        audio_path = extracted / relative
+        if (row.get("canonical_filename") != audio_path.name
+                or row.get("package_path") != relative
+                or row.get("size_bytes") != audio_path.stat().st_size
+                or row.get("sha256") != sha256(audio_path)):
+            raise ValueError(f"Manifest media identity mismatch: lecture {number:02d}")
     sidecar = archive.with_name(f"{archive.name}.sha256")
     sidecar_digest, sidecar_name = sidecar.read_text(encoding="utf-8").strip().split("  ", 1)
     archive_digest = sha256(archive)

@@ -8,7 +8,7 @@
       },
       {
         "name": "Stanford Engineering Everywhere",
-        "type": "HostingInstitution"
+        "type": "Other"
       }
     ],
     "creators": [
@@ -46,7 +46,7 @@
         "resource_type": "other"
       }
     ],
-    "title": "Stanford CS229 Machine Learning — Unofficial Audio Preservation Edition",
+    "title": "CS229 Machine Learning — Unofficial Audio Preservation Edition",
     "upload_type": "video",
     "version": "1.0"
   }

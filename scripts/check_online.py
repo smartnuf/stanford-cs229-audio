@@ -8,19 +8,21 @@ import concurrent.futures
 import hashlib
 import json
 import socket
+import subprocess
 import time
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import quote
 
 from feedlib import ROOT, load_catalog
 
 USER_AGENT = "stanford-cs229-audio-integrity/1.0"
 RETRIES = 3
-TIMEOUT = 30
+TIMEOUT = 15
 TRANSIENT = {408, 425, 429, 500, 502, 503, 504}
-MEDIA_TYPES = {"audio/mp4", "audio/x-m4a", "application/octet-stream"}
+MEDIA_TYPES = {"audio/mp4", "audio/x-m4a"}
 
 
 class NetworkUnavailable(RuntimeError):
@@ -58,6 +60,7 @@ def request(url: str, method: str = "HEAD", byte_range: str | None = None,
                     "content_length": int(response.headers["Content-Length"])
                     if response.headers.get("Content-Length") else None,
                     "content_range": response.headers.get("Content-Range"),
+                    "last_modified": response.headers.get("Last-Modified"),
                     "body": body,
                 }
         except urllib.error.HTTPError as error:
@@ -77,7 +80,8 @@ def require_status(result: dict, expected: set[int], label: str) -> None:
         raise SemanticFailure(f"{label}: HTTP {result['status']}, expected {sorted(expected)}")
 
 
-def check_document(url: str, path: Path, types: set[str], label: str) -> dict:
+def check_document(url: str, path: Path, types: set[str], label: str,
+                   require_last_modified: bool = False) -> dict:
     head = request(url)
     get = request(url, method="GET", read_all=True)
     require_status(head, {200}, f"{label} HEAD")
@@ -87,6 +91,8 @@ def check_document(url: str, path: Path, types: set[str], label: str) -> dict:
         raise SemanticFailure(f"{label}: content type mismatch")
     if head["content_length"] != len(local) or get["body"] != local:
         raise SemanticFailure(f"{label}: live bytes differ from local artifact")
+    if require_last_modified and not head["last_modified"]:
+        raise SemanticFailure(f"{label}: HEAD response lacks Last-Modified")
     return {
         "url": url,
         "final_url": get["final_url"],
@@ -95,10 +101,11 @@ def check_document(url: str, path: Path, types: set[str], label: str) -> dict:
         "head_status": head["status"],
         "get_status": get["status"],
         "content_type": get["content_type"],
+        "last_modified": head["last_modified"],
     }
 
 
-def check_link(url: str, label: str) -> dict:
+def check_link(url: str, label: str, expected_types: set[str] | None = None) -> dict:
     try:
         result = request(url)
     except HTTPFailure as error:
@@ -106,6 +113,8 @@ def check_link(url: str, label: str) -> dict:
             raise
         result = request(url, method="GET", byte_range="bytes=0-0")
     require_status(result, {200, 204, 206}, label)
+    if expected_types and result["content_type"] not in expected_types:
+        raise SemanticFailure(f"{label}: content type mismatch: {result['content_type']}")
     return {key: value for key, value in result.items() if key != "body"}
 
 
@@ -117,20 +126,11 @@ def range_total(result: dict) -> int | None:
 
 
 def check_asset(url: str, size: int, types: set[str], label: str) -> dict:
-    try:
-        head = request(url)
-        require_status(head, {200}, f"{label} HEAD")
-        full_size = head["content_length"]
-        content_type = head["content_type"]
-        final_url = head["final_url"]
-        head_status: int | str = head["status"]
-    except HTTPFailure as error:
-        if error.code not in {403, 405, 501}:
-            raise
-        full_size = None
-        content_type = None
-        final_url = None
-        head_status = f"unsupported:{error.code}"
+    head = request(url)
+    require_status(head, {200}, f"{label} HEAD")
+    full_size = head["content_length"]
+    content_type = head["content_type"]
+    final_url = head["final_url"]
     samples = []
     for position in (0, size - 1):
         result = request(
@@ -146,24 +146,40 @@ def check_asset(url: str, size: int, types: set[str], label: str) -> dict:
             "content_range": result["content_range"],
             "byte_hex": result["body"].hex(),
         })
-        if full_size is None:
-            full_size = range_total(result)
-            content_type = result["content_type"]
-            final_url = result["final_url"]
     if full_size != size or content_type not in types:
-        raise SemanticFailure(f"{label}: full length or content type mismatch")
+        raise SemanticFailure(
+            f"{label}: HEAD length/type mismatch ({full_size}, {content_type})")
     return {
         "url": url,
         "final_url": final_url,
         "size_bytes": size,
         "content_type": content_type,
-        "head_status": head_status,
+        "head_status": head["status"],
         "first_range": samples[0],
         "last_range": samples[1],
     }
 
 
-def check_release(publication: dict) -> dict:
+def resolve_tag_commit(repository: str, tag: str) -> tuple[str, list[dict]]:
+    base = f"https://api.github.com/repos/{repository}"
+    response = request(f"{base}/git/ref/tags/{quote(tag, safe='')}", method="GET", read_all=True)
+    require_status(response, {200}, "release tag ref")
+    record = json.loads(response["body"])
+    target = record.get("object", {})
+    chain = [{"type": target.get("type"), "sha": target.get("sha")}]
+    for _ in range(4):
+        if target.get("type") == "commit":
+            return target["sha"], chain
+        if target.get("type") != "tag" or not target.get("sha"):
+            break
+        response = request(f"{base}/git/tags/{target['sha']}", method="GET", read_all=True)
+        require_status(response, {200}, "annotated tag object")
+        target = json.loads(response["body"]).get("object", {})
+        chain.append({"type": target.get("type"), "sha": target.get("sha")})
+    raise SemanticFailure("Release tag does not resolve to a commit")
+
+
+def check_release(publication: dict, expected_release_commit: str) -> dict:
     expected_doc = json.loads((ROOT / "data" / "release-assets.json").read_text())
     media = publication["media"]
     api_url = (
@@ -176,8 +192,15 @@ def check_release(publication: dict) -> dict:
     except json.JSONDecodeError as error:
         raise SemanticFailure("Release API returned invalid JSON") from error
     if (release.get("tag_name") != media["release_tag"] or release.get("draft")
-            or release.get("prerelease")):
+            or release.get("prerelease") or release.get("html_url") != media["release_url"]):
         raise SemanticFailure("Release identity/state mismatch")
+    if release.get("immutable") is not True:
+        raise SemanticFailure("Release is not immutable")
+    tag_commit, tag_chain = resolve_tag_commit(media["repository"], media["release_tag"])
+    if tag_commit != expected_release_commit:
+        raise SemanticFailure(
+            f"Release tag target {tag_commit} does not match expected release commit "
+            f"{expected_release_commit}")
     expected = {row["name"]: row for row in expected_doc["assets"]}
     actual = {row["name"]: row for row in release.get("assets", [])}
     if set(actual) != set(expected):
@@ -188,8 +211,11 @@ def check_release(publication: dict) -> dict:
         if found.get("size") != wanted["size_bytes"] or found.get("state") != "uploaded":
             raise SemanticFailure(f"Release asset state/size mismatch: {name}")
         digest = found.get("digest")
-        if digest is not None and digest != f"sha256:{wanted['sha256']}":
+        if digest != f"sha256:{wanted['sha256']}":
             raise SemanticFailure(f"Release asset digest mismatch: {name}")
+        expected_url = media["base_url"] + name
+        if found.get("browser_download_url") != expected_url:
+            raise SemanticFailure(f"Release asset URL mismatch: {name}")
         records.append({
             "name": name,
             "size_bytes": found["size"],
@@ -197,7 +223,15 @@ def check_release(publication: dict) -> dict:
             "digest": digest,
             "url": found["browser_download_url"],
         })
-    return {"api_url": api_url, "release_url": release["html_url"], "assets": records}
+    return {
+        "api_url": api_url,
+        "release_url": release["html_url"],
+        "immutable": True,
+        "expected_release_commit": expected_release_commit,
+        "resolved_tag_commit": tag_commit,
+        "tag_chain": tag_chain,
+        "assets": records,
+    }
 
 
 def record_failure(report: dict, operation) -> object | None:
@@ -213,11 +247,21 @@ def record_failure(report: dict, operation) -> object | None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--expected-release-commit")
     args = parser.parse_args()
     publication, episodes = load_catalog()
+    expected_release_commit = (
+        args.expected_release_commit or publication["media"].get("release_commit"))
+    if (not isinstance(expected_release_commit, str) or len(expected_release_commit) != 40
+            or any(character not in "0123456789abcdef" for character in expected_release_commit)):
+        parser.error("provide --expected-release-commit or pin media.release_commit as a full SHA")
     report = {
         "schema_version": 1,
         "checked_at": datetime.now(timezone.utc).isoformat(),
+        "checked_out_commit": subprocess.run(
+            ["git", "rev-parse", "HEAD"], cwd=ROOT, check=True,
+            capture_output=True, text=True).stdout.strip(),
+        "expected_release_commit": expected_release_commit,
         "result": "pass",
         "network_failures": [],
         "semantic_failures": [],
@@ -235,10 +279,12 @@ def main() -> int:
     )
     for name, url, path, types in documents:
         value = record_failure(report, lambda url=url, path=path, types=types, name=name:
-                               check_document(url, path, types, name))
+                               check_document(url, path, types, name,
+                                              require_last_modified=name == "artwork"))
         if value is not None:
             report["documents"][name] = value
-    report["release"] = record_failure(report, lambda: check_release(publication))
+    report["release"] = record_failure(
+        report, lambda: check_release(publication, expected_release_commit))
 
     operations = []
     for episode in episodes:
@@ -252,14 +298,16 @@ def main() -> int:
         ):
             operations.append(("source", episode.number, kind,
                                lambda number=episode.number, kind=kind, url=url:
-                               check_link(url, f"lecture {number:02d} {kind}")))
+                               check_link(
+                                   url, f"lecture {number:02d} {kind}",
+                                   {"text/html"} if kind == "transcript_html" else None)))
     release_assets = json.loads((ROOT / "data" / "release-assets.json").read_text())
     master = next(row for row in release_assets["assets"] if row["role"] == "master_archive")
     operations.append(("master", 0, None, lambda: check_asset(
         publication["media"]["base_url"] + master["name"], master["size_bytes"],
         {"application/zip", "application/octet-stream"}, "master archive")))
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
         futures = {executor.submit(call): (category, number, kind)
                    for category, number, kind, call in operations}
         for future in concurrent.futures.as_completed(futures):

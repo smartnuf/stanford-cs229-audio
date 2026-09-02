@@ -6,6 +6,7 @@ from __future__ import annotations
 import csv
 import html
 import json
+import re
 import uuid
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
@@ -17,6 +18,7 @@ NS_ATOM = "http://www.w3.org/2005/Atom"
 NS_ITUNES = "http://www.itunes.com/dtds/podcast-1.0.dtd"
 NS_PODCAST = "https://podcastindex.org/namespace/1.0"
 NAMESPACES = {"atom": NS_ATOM, "itunes": NS_ITUNES, "podcast": NS_PODCAST}
+PODCAST_GUID_NAMESPACE = uuid.UUID("ead4c236-bf58-58c6-a2c6-a6b28d128cb6")
 
 for prefix, namespace in NAMESPACES.items():
     ET.register_namespace(prefix, namespace)
@@ -51,6 +53,13 @@ def duration_text(seconds: float) -> str:
 
 def channel_guid(publication: dict) -> str:
     return str(uuid.UUID(publication["identity"]["channel_guid"]))
+
+
+def derived_channel_guid(publication: dict) -> str:
+    """Derive the Podcasting 2.0 channel GUID from its one-time canonical seed."""
+    identity = publication["identity"]
+    namespace = uuid.UUID(identity["channel_guid_namespace"])
+    return str(uuid.uuid5(namespace, identity["channel_guid_seed"]))
 
 
 def episode_guid(publication: dict, number: int) -> str:
@@ -139,6 +148,14 @@ def validate_catalog(publication: dict, episodes: list[Episode]) -> None:
             raise ValueError(f"Feed {key} must use HTTPS")
     if urlparse(publication["media"]["base_url"]).scheme != "https":
         raise ValueError("Media base URL must use HTTPS")
+    identity = publication["identity"]
+    normalized_feed_url = re.sub(r"^https?://", "", publication["feed"]["feed_url"]).rstrip("/")
+    if uuid.UUID(identity["channel_guid_namespace"]) != PODCAST_GUID_NAMESPACE:
+        raise ValueError("Podcasting 2.0 channel GUID namespace changed")
+    if identity["channel_guid_seed"] != normalized_feed_url:
+        raise ValueError("Channel GUID seed must match the first public feed URL")
+    if channel_guid(publication) != derived_channel_guid(publication):
+        raise ValueError("Pinned channel GUID does not match its one-time derivation")
     for episode in episodes:
         if episode.source_filename != f"lecture{episode.number:02d}.m4a":
             raise ValueError(f"Unexpected source filename for lecture {episode.number}")

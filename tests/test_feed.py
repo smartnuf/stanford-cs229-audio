@@ -40,6 +40,12 @@ class MetadataTests(unittest.TestCase):
 
     def test_guids_are_deterministic_and_golden_locked(self) -> None:
         self.assertEqual(feedlib.channel_guid(self.publication), validate_repo.EXPECTED_CHANNEL_GUID)
+        self.assertEqual(feedlib.derived_channel_guid(self.publication),
+                         validate_repo.EXPECTED_CHANNEL_GUID)
+        self.assertEqual(self.publication["identity"]["channel_guid_namespace"],
+                         validate_repo.EXPECTED_CHANNEL_GUID_NAMESPACE)
+        self.assertEqual(self.publication["identity"]["channel_guid_seed"],
+                         validate_repo.EXPECTED_CHANNEL_GUID_SEED)
         self.assertEqual(self.publication["identity"]["episode_namespace"],
                          validate_repo.EXPECTED_EPISODE_NAMESPACE)
         self.assertEqual(self.episodes[0].guid, validate_repo.EXPECTED_FIRST_GUID)

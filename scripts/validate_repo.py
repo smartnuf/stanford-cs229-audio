@@ -16,18 +16,21 @@ from urllib.parse import urlparse
 
 from feedlib import (
     NAMESPACES, NS_ATOM, NS_ITUNES, NS_PODCAST, ROOT, build_feed,
-    build_index, channel_guid, episode_guid, load_catalog, outputs, validate_catalog,
+    build_index, channel_guid, derived_channel_guid, episode_guid, load_catalog, outputs,
+    validate_catalog,
 )
 
 MAX_TRACKED_BYTES = 5 * 1024 * 1024
 EXPECTED_TITLE = "CS229 Machine Learning — Unofficial Audio Preservation Edition"
-EXPECTED_CHANNEL_GUID = "b5a6f6d6-25ea-59dc-bc91-d8ae1887d8c0"
+EXPECTED_CHANNEL_GUID = "469b7cc4-06ab-5668-9474-0d72dac20367"
+EXPECTED_CHANNEL_GUID_NAMESPACE = "ead4c236-bf58-58c6-a2c6-a6b28d128cb6"
+EXPECTED_CHANNEL_GUID_SEED = "smartnuf.github.io/stanford-cs229-audio/feed.xml"
 EXPECTED_EPISODE_NAMESPACE = "89a4ee68-d293-55c5-aba9-ca5d1627d6a8"
 EXPECTED_FIRST_GUID = "urn:uuid:b504132c-3181-5bc1-99dd-b114c9454842"
 EXPECTED_LAST_GUID = "urn:uuid:a4cecbba-ea7a-5306-8f05-d9f014a381b0"
 EXPECTED_COVER_SHA256 = "771c71f6720e573bf3aaa9190ff37794873a893d99de05683f2e4da370756c06"
-EXPECTED_MASTER_ZIP_SIZE = 1_798_288_291
-EXPECTED_MASTER_ZIP_SHA256 = "9a4403e05e68ef83f8c311a9fa8ca7b172268d61ce1b909ed97b239806566277"
+EXPECTED_MASTER_ZIP_SIZE = 1_798_288_244
+EXPECTED_MASTER_ZIP_SHA256 = "0c0e3bab4cf6f74a82f02a93f636c565fab02c3ab63332458ffeb58aee826953"
 FORBIDDEN_SUFFIXES = {
     ".m4a", ".mp4", ".m4v", ".mov", ".zip", ".tar", ".tgz", ".gz", ".xz",
     ".p12", ".pfx", ".pem", ".key",
@@ -118,6 +121,10 @@ def validate_manifests(root: Path = ROOT) -> dict:
     fail(publication["feed"]["title"] != EXPECTED_TITLE, "Public feed title changed")
     fail(publication["identity"]["channel_guid"] != EXPECTED_CHANNEL_GUID,
          "Pinned channel GUID changed")
+    fail(publication["identity"]["channel_guid_namespace"] != EXPECTED_CHANNEL_GUID_NAMESPACE
+         or publication["identity"]["channel_guid_seed"] != EXPECTED_CHANNEL_GUID_SEED
+         or derived_channel_guid(publication) != EXPECTED_CHANNEL_GUID,
+         "Channel GUID derivation contract changed")
     fail(publication["identity"]["episode_namespace"] != EXPECTED_EPISODE_NAMESPACE,
          "Pinned episode namespace changed")
     fail(episode_guid(publication, 1) != EXPECTED_FIRST_GUID
@@ -139,6 +146,16 @@ def validate_manifests(root: Path = ROOT) -> dict:
         fail(not re.fullmatch(r"[0-9a-f]{64}", episode.sha256),
              f"Invalid SHA-256 for {episode.filename}")
     release = publication["media"]
+    publication_status = publication.get("publication_status")
+    fail(publication_status not in {"prepared", "published"},
+         "Publication status must be prepared or published")
+    release_commit = release.get("release_commit")
+    if publication_status == "prepared":
+        fail(release_commit is not None, "Prepared publication must not claim a release commit")
+    else:
+        fail(not isinstance(release_commit, str)
+             or not re.fullmatch(r"[0-9a-f]{40}", release_commit),
+             "Published release commit is missing or malformed")
     fail(release.get("repository") != "smartnuf/stanford-cs229-audio",
          "Release repository changed")
     fail(release.get("release_tag") != "audio-v1.0.0", "Release tag changed")
@@ -187,6 +204,12 @@ def validate_manifests(root: Path = ROOT) -> dict:
          or zenodo.get("access_right") != "open", "Zenodo access/licence mismatch")
     fail(zenodo.get("creators") != [{"name": "Ackland, Andrew"}],
          "Zenodo preservation-curator creator changed")
+    fail(zenodo.get("contributors") != [
+        {"name": "Ng, Andrew", "type": "Other"},
+        {"name": "Stanford Engineering Everywhere", "type": "Other"},
+    ], "Zenodo contributor roles changed")
+    fail(zenodo.get("title") != "CS229 Machine Learning — Unofficial Audio Preservation Edition",
+         "Zenodo display title changed")
     for required in ("preservation curator/depositor", "Andrew Ng is the course lecturer",
                      "neither is represented as having authored or endorsed"):
         fail(required not in zenodo.get("description", ""),
@@ -199,6 +222,8 @@ def validate_manifests(root: Path = ROOT) -> dict:
         "last_episode_guid": episode_guid(publication, 20),
         "release_media_assets": len(episodes),
         "release_assets": len(assets),
+        "publication_status": publication_status,
+        "release_commit": release_commit,
         "master_zip_sha256": master["sha256"],
     }
 
