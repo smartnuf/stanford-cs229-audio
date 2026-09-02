@@ -30,6 +30,8 @@ without this feed being submitted to a directory.
 - `scripts/generate_site.py` — deterministic RSS and landing-page generator
 - `scripts/validate_repo.py` — offline repository/feed/safety validation
 - `scripts/check_online.py` — bounded, read-only deployment and link checks
+- `scripts/check_client.py` — traceable gPodder subscription/download and
+  FFmpeg remote probe/seek/decode checks
 - `zenodo/` — proposed deposit metadata and guarded draft/publish instructions
 - `contact/castbox-restoration.md` — prepared but unsent restoration message
 - `docs/` — generated GitHub Pages site
@@ -49,6 +51,13 @@ git diff --check
 Building the preservation package additionally requires FFprobe and the 20
 verified source M4As outside Git. See `OPERATIONS.md` for exact commands,
 release recovery, online verification and later feed-domain migration.
+
+The `Client compatibility` workflow runs a weekly smoke test and offers a
+manual `full` mode. Smoke mode checks all RSS identities, uses a fresh gPodder
+profile to subscribe/update/list the feed and download/hash Lecture 1, and uses
+FFmpeg to probe and decode three remote seek points from Lectures 1, 10 and 20.
+Full mode applies the media checks and verified gPodder downloads to all 20
+lectures. Each run retains a machine-readable JSON trace as an Actions artifact.
 
 ## Licensing
 

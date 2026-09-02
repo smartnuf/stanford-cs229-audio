@@ -140,6 +140,37 @@ the feed. Preserve the release and recommend Cloudflare R2 behind a future
 controlled domain. Do not move media to Git LFS, Pages, Drive, Dropbox or a
 proxy.
 
+## Repeatable client compatibility
+
+The headless client harness provides a repeatable layer above raw HTTP checks.
+It parses and cross-checks the live RSS feed, uses a clean gPodder profile for
+real subscription/update/list/download behavior, and uses FFprobe/FFmpeg to
+open the public enclosures, seek remotely and decode short segments.
+
+For a local smoke run with gPodder and FFmpeg installed:
+
+```bash
+python scripts/check_client.py \
+  --scope smoke \
+  --output client-compatibility-report.json
+```
+
+Smoke mode lists all 20 canonical GUIDs, downloads and hashes Lecture 1 through
+gPodder, and probes/decodes start, five-minute and near-end segments from
+Lectures 1, 10 and 20. The manual `full` workflow mode performs the FFmpeg checks
+and gPodder downloads/hashes for all 20 files, transferring approximately 1.8
+GB. Do not schedule full mode.
+
+Every run records UTC timestamps, public URLs, exact tool versions, commands,
+elapsed times, feed bytes/hash, probe metadata, decoded durations, gPodder
+results and downloaded hashes. Exit 1 is a semantic/client failure; exit 2 is
+bounded network unavailability. GitHub Actions retains the JSON trace for 30
+days. Temporary gPodder profiles and downloads are removed after the run.
+
+This harness does not reproduce Apple Podcasts' private parser, caching or UI.
+Continue to record manual iPhone streaming, seeking, downloading, artwork and
+ordering acceptance separately.
+
 ## Zenodo
 
 `zenodo/README.md` and `zenodo/metadata.json` define the proposed deposit. A

@@ -41,6 +41,7 @@ temp/
 *.tmp
 *.part
 online-report.json
+client-compatibility-report.json
 
 # Media and transport archives must never be committed
 *.m4a

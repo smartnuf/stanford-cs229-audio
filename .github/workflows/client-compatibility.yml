@@ -1,0 +1,47 @@
+name: Client compatibility
+
+on:
+  schedule:
+    - cron: "41 8 * * 3"
+  workflow_dispatch:
+    inputs:
+      scope:
+        description: Client test scope
+        required: true
+        default: smoke
+        type: choice
+        options:
+          - smoke
+          - full
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      CLIENT_SCOPE: ${{ github.event_name == 'workflow_dispatch' && inputs.scope || 'smoke' }}
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install headless podcast clients
+        run: |
+          sudo apt-get update -o Acquire::Retries=3
+          sudo apt-get install --yes --no-install-recommends ffmpeg gpodder
+      - name: Run traceable client checks
+        run: >-
+          python3 scripts/check_client.py
+          --scope "$CLIENT_SCOPE"
+          --output client-compatibility-report.json
+      - name: Upload client trace
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: client-compatibility-${{ github.run_id }}
+          path: client-compatibility-report.json
+          if-no-files-found: warn
+          retention-days: 30

@@ -93,6 +93,14 @@ explicit P3 warning, accepted only alongside exact Release API `audio/mp4`,
 digests, lengths, HTTPS, `HEAD`, and range evidence; never report the CDN header
 itself as audio-specific.
 
+Client-level validation uses `scripts/check_client.py` and the
+`Client compatibility` workflow. Keep its weekly mode bounded to the documented
+smoke subset; full 20-file downloads are manual only. The gPodder profile and
+downloads must be isolated temporary state, never committed or reused. Preserve
+the JSON trace, exact tool versions, feed/GUID checks, download hashes and
+FFmpeg probe/seek/decode results. This complements but does not impersonate an
+Apple Podcasts client acceptance test.
+
 ## Repository safety
 
 - Keep every tracked file below 5 MiB.

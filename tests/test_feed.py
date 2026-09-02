@@ -236,15 +236,24 @@ class WorkflowTests(unittest.TestCase):
     def test_workflows_are_read_only_and_online_is_not_push_triggered(self) -> None:
         offline = (ROOT / ".github" / "workflows" / "validate.yml").read_text()
         online = (ROOT / ".github" / "workflows" / "online-integrity.yml").read_text()
-        for workflow in (offline, online):
+        client = (ROOT / ".github" / "workflows" / "client-compatibility.yml").read_text()
+        checkout_sha = "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"
+        artifact_sha = "actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a"
+        for workflow in (offline, online, client):
             self.assertIn("permissions:\n  contents: read", workflow)
-            self.assertIn("actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683", workflow)
+            self.assertIn(checkout_sha, workflow)
             self.assertIn("persist-credentials: false", workflow)
             self.assertIn("runs-on: ubuntu-24.04", workflow)
-        self.assertIn("schedule:", online)
-        self.assertIn("workflow_dispatch:", online)
-        self.assertNotIn("\n  push:", online)
-        self.assertNotIn("git push", online)
+        for workflow in (online, client):
+            self.assertIn("schedule:", workflow)
+            self.assertIn("workflow_dispatch:", workflow)
+            self.assertNotIn("\n  push:", workflow)
+            self.assertNotIn("git push", workflow)
+            self.assertIn(artifact_sha, workflow)
+        self.assertIn("scripts/check_client.py", client)
+        self.assertIn("--scope", client)
+        self.assertIn("gpodder", client)
+        self.assertIn("ffmpeg", client)
         self.assertIn("scripts/audit_history.py", offline)
 
 
