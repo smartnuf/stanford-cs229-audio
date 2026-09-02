@@ -202,7 +202,7 @@ def validate_manifests(root: Path = ROOT) -> dict:
          "Zenodo type/version mismatch")
     fail(zenodo.get("license") != "cc-by-nc-sa-4.0"
          or zenodo.get("access_right") != "open", "Zenodo access/licence mismatch")
-    fail(zenodo.get("creators") != [{"name": "Ackland, Andrew"}],
+    fail(zenodo.get("creators") != [{"name": "smartnuf"}],
          "Zenodo preservation-curator creator changed")
     fail(zenodo.get("contributors") != [
         {"name": "Ng, Andrew", "type": "Other"},
@@ -210,7 +210,8 @@ def validate_manifests(root: Path = ROOT) -> dict:
     ], "Zenodo contributor roles changed")
     fail(zenodo.get("title") != "CS229 Machine Learning — Unofficial Audio Preservation Edition",
          "Zenodo display title changed")
-    for required in ("preservation curator/depositor", "Andrew Ng is the course lecturer",
+    for required in ("smartnuf is identified only as preservation curator/depositor",
+                     "Andrew Ng is the course lecturer",
                      "neither is represented as having authored or endorsed"):
         fail(required not in zenodo.get("description", ""),
              "Zenodo description lacks role/non-endorsement wording")

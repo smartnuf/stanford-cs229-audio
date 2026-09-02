@@ -13,10 +13,10 @@
     ],
     "creators": [
       {
-        "name": "Ackland, Andrew"
+        "name": "smartnuf"
       }
     ],
-    "description": "<p>A canonical preservation package for the complete 20-lecture Stanford CS229 Machine Learning course taught by Andrew Ng and originally published by Stanford Engineering Everywhere. The primary payload is a deterministic ZIP containing 20 M4A files, checksums, a machine-readable manifest, provenance and licensing documentation. The AAC-LC audio streams were copied from Stanford's MP4 containers without decoding or re-encoding; the evidentiary limits are documented in PROVENANCE.md.</p><p>This is an independently prepared, non-commercial audio-preservation/adaptation edition. Andrew Ackland is identified only as preservation curator/depositor. Andrew Ng is the course lecturer, Stanford Engineering Everywhere is the original source, and neither is represented as having authored or endorsed this preservation edition. Original lectures remain copyright Stanford University and/or identified rights holders.</p>",
+    "description": "<p>A canonical preservation package for the complete 20-lecture Stanford CS229 Machine Learning course taught by Andrew Ng and originally published by Stanford Engineering Everywhere. The primary payload is a deterministic ZIP containing 20 M4A files, checksums, a machine-readable manifest, provenance and licensing documentation. The AAC-LC audio streams were copied from Stanford's MP4 containers without decoding or re-encoding; the evidentiary limits are documented in PROVENANCE.md.</p><p>This is an independently prepared, non-commercial audio-preservation/adaptation edition. smartnuf is identified only as preservation curator/depositor. Andrew Ng is the course lecturer, Stanford Engineering Everywhere is the original source, and neither is represented as having authored or endorsed this preservation edition. Original lectures remain copyright Stanford University and/or identified rights holders.</p>",
     "keywords": [
       "CS229",
       "machine learning",

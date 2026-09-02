@@ -49,6 +49,9 @@ class PreservationContractTests(unittest.TestCase):
         self.assertEqual(sum(row["role"] == "master_archive" for row in release["assets"]), 1)
         zenodo = json.loads((ROOT / "zenodo" / "metadata.json").read_text())["metadata"]
         self.assertEqual(zenodo["license"], "cc-by-nc-sa-4.0")
+        self.assertEqual(zenodo["creators"], [{"name": "smartnuf"}])
+        self.assertNotIn("orcid", zenodo["creators"][0])
+        self.assertNotIn("affiliation", zenodo["creators"][0])
         self.assertIn("preservation curator/depositor", zenodo["description"])
 
 
