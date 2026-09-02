@@ -48,6 +48,10 @@ To regenerate the deterministic static output:
 python scripts/generate_site.py
 ```
 
+The committed cover is validated without third-party packages. Recreating it
+from `scripts/generate_cover.py` additionally requires Pillow and the DejaVu
+Sans fonts; review the rendered result and its SHA-256 before committing it.
+
 Run the network integration check only after the proposed URLs are live:
 
 ```bash

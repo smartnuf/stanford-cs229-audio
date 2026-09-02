@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import subprocess
@@ -24,18 +25,22 @@ EXPECTED_CHANNEL_GUID = "b5a6f6d6-25ea-59dc-bc91-d8ae1887d8c0"
 EXPECTED_EPISODE_NAMESPACE = "89a4ee68-d293-55c5-aba9-ca5d1627d6a8"
 EXPECTED_FIRST_GUID = "urn:uuid:b504132c-3181-5bc1-99dd-b114c9454842"
 EXPECTED_LAST_GUID = "urn:uuid:a4cecbba-ea7a-5306-8f05-d9f014a381b0"
+EXPECTED_COVER_SHA256 = "771c71f6720e573bf3aaa9190ff37794873a893d99de05683f2e4da370756c06"
 FORBIDDEN_SUFFIXES = {
     ".m4a", ".mp4", ".m4v", ".mov", ".zip", ".tar", ".tgz", ".gz", ".xz",
     ".p12", ".pfx", ".pem", ".key",
 }
-FORBIDDEN_NAMES = {".netrc", "netrc", "cookies.txt", "ia.ini", "credentials.json"}
+FORBIDDEN_NAMES = {
+    ".netrc", "netrc", "cookies.txt", "ia.ini", "credentials.json",
+    "id_rsa", "id_dsa", "id_ecdsa", "id_ed25519",
+}
 FORBIDDEN_TOP_LEVEL = {"staging", "build", "dist", "tmp", "temp"}
 SECRET_PATTERNS = (
     re.compile(rb"gh[pousr]_[A-Za-z0-9]{30,}"),
     re.compile(rb"github_pat_[A-Za-z0-9_]{40,}"),
     re.compile(rb"AKIA[0-9A-Z]{16}"),
     re.compile(rb"sk-[A-Za-z0-9]{32,}"),
-    re.compile(("-----BEGIN " + "PRIVATE KEY-----").encode()),
+    re.compile(b"-----BEGIN " + rb"(?:OPENSSH |RSA |EC |DSA )?" + b"PRIVATE KEY-----"),
 )
 
 
@@ -127,12 +132,45 @@ def validate_manifests(root: Path = ROOT) -> dict:
              f"Checksum mismatch for {episode.filename}")
         fail(not re.fullmatch(r"[0-9a-f]{64}", episode.sha256),
              f"Invalid SHA-256 for {episode.filename}")
+    archive_hash_document = json.loads((root / "data" / "archive-hashes.json").read_text())
+    archive_hashes = archive_hash_document.get("records", [])
+    fail(archive_hash_document.get("schema_version") != 1 or len(archive_hashes) != 20,
+         "Archive exposed-hash manifest must contain 20 rows")
+    fail([row.get("filename") for row in archive_hashes]
+         != [episode.filename for episode in episodes], "Archive hash filenames/order changed")
+    for row in archive_hashes:
+        fail(not re.fullmatch(r"[0-9a-f]{32}", row.get("md5", "")),
+             f"Invalid MD5 for {row.get('filename')}")
+        fail(not re.fullmatch(r"[0-9a-f]{40}", row.get("sha1", "")),
+             f"Invalid SHA-1 for {row.get('filename')}")
+    archive = json.loads((root / "data" / "archive-item.json").read_text())
+    expected_public_files = [f"lecture{number:02d}.m4a" for number in range(1, 21)] + [
+        "cover.jpg", "NOTICE.md", "LICENSE-MEDIA.md", "source-map.csv",
+        "media-verification-2026-09-02.json", "SHA256SUMS",
+    ]
+    fail(archive.get("schema_version") != 1, "Archive-item schema changed")
+    fail(archive.get("identifier") != publication["media"]["internet_archive_identifier"],
+         "Archive identifier differs from enclosure configuration")
+    fail(archive.get("public_files") != expected_public_files,
+         "Internet Archive public-file allowlist changed")
+    archive_metadata = archive.get("metadata", {})
+    fail(archive_metadata.get("title") != EXPECTED_TITLE, "Archive title mismatch")
+    fail(archive_metadata.get("creator") != "Andrew Ng (lecturer)", "Archive creator wording mismatch")
+    fail(archive_metadata.get("date") != "2007" or archive_metadata.get("year") != "2007",
+         "Archive recording year must remain 2007")
+    fail(archive_metadata.get("licenseurl") != publication["license"]["url"],
+         "Archive licence URL mismatch")
+    for required in ("Autumn 2007", "launched in 2008", "without re-encoding",
+                     "No separate authorization", "No monetization"):
+        fail(required not in archive_metadata.get("description", ""),
+             "Archive description lacks required provenance/unofficial wording")
     return {
         "episodes": len(episodes),
         "total_enclosure_bytes": sum(episode.size_bytes for episode in episodes),
         "channel_guid": channel_guid(publication),
         "first_episode_guid": episode_guid(publication, 1),
         "last_episode_guid": episode_guid(publication, 20),
+        "archive_public_files": len(expected_public_files),
     }
 
 
@@ -242,12 +280,15 @@ def validate_generated_site(root: Path = ROOT) -> dict:
     width, height, components = jpeg_dimensions(root / "docs" / "cover.jpg")
     fail((width, height, components) != (3000, 3000, 3),
          "Artwork must be a 3000x3000 three-component JPEG")
+    cover_hash = hashlib.sha256((root / "docs" / "cover.jpg").read_bytes()).hexdigest()
+    fail(cover_hash != EXPECTED_COVER_SHA256, "Public artwork golden hash changed")
     index = (root / "docs" / "index.html").read_text(encoding="utf-8")
     publication, episodes = load_catalog(root)
     fail(index.count("<li>") != 20, "Landing page must list exactly 20 generated lectures")
     fail(publication["feed"]["feed_url"].rsplit("/", 1)[-1] not in index,
          "Landing page does not link the feed")
-    return {"generated_files": len(expected), "artwork": {"width": width, "height": height, "components": components}}
+    return {"generated_files": len(expected), "artwork": {
+        "width": width, "height": height, "components": components, "sha256": cover_hash}}
 
 
 def run_all(root: Path = ROOT) -> dict:

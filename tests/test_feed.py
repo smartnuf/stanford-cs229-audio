@@ -60,6 +60,19 @@ class MetadataTests(unittest.TestCase):
                              "https://see.stanford.edu/materials/aimlcs229/transcripts/"
                              f"MachineLearning-Lecture{number:02d}.pdf")
 
+    def test_archive_item_allowlist_and_metadata(self) -> None:
+        result = validate_repo.validate_manifests()
+        self.assertEqual(result["archive_public_files"], 26)
+        archive = json.loads((ROOT / "data" / "archive-item.json").read_text())
+        self.assertEqual(archive["identifier"],
+                         "cs229-machine-learning-unofficial-audio-preservation")
+        self.assertEqual(archive["public_files"][:20],
+                         [f"lecture{number:02d}.m4a" for number in range(1, 21)])
+        self.assertNotIn("stanford-restoration-request.md", archive["public_files"])
+        exposed_hashes = json.loads((ROOT / "data" / "archive-hashes.json").read_text())
+        self.assertEqual([row["filename"] for row in exposed_hashes["records"]],
+                         [f"lecture{number:02d}.m4a" for number in range(1, 21)])
+
 
 class FeedTests(unittest.TestCase):
     @classmethod
@@ -164,11 +177,39 @@ class RepositorySafetyTests(unittest.TestCase):
             validate_repo.validate_repository_safety(root)
         self.assertNotIn(fake.decode(), str(context.exception))
 
+    def test_ssh_private_keys_and_standard_filenames_are_rejected(self) -> None:
+        fake_header = ("-----BEGIN " + "OPENSSH PRIVATE KEY-----").encode()
+        root = self.make_repo("notes.txt", fake_header)
+        with self.assertRaisesRegex(validate_repo.ValidationError, "notes.txt") as context:
+            validate_repo.validate_repository_safety(root)
+        self.assertNotIn(fake_header.decode(), str(context.exception))
+        root = self.make_repo("id_ed25519", b"placeholder")
+        with self.assertRaisesRegex(validate_repo.ValidationError, "id_ed25519"):
+            validate_repo.validate_repository_safety(root)
+
 
 class ArtworkTests(unittest.TestCase):
     def test_cover_is_square_rgb_jpeg(self) -> None:
         self.assertEqual(validate_repo.jpeg_dimensions(ROOT / "docs" / "cover.jpg"),
                          (3000, 3000, 3))
+        self.assertEqual(validate_repo.validate_generated_site()["artwork"]["sha256"],
+                         validate_repo.EXPECTED_COVER_SHA256)
+
+
+class WorkflowTests(unittest.TestCase):
+    def test_workflows_are_read_only_and_online_is_not_push_triggered(self) -> None:
+        offline = (ROOT / ".github" / "workflows" / "validate.yml").read_text()
+        online = (ROOT / ".github" / "workflows" / "online-integrity.yml").read_text()
+        for workflow in (offline, online):
+            self.assertIn("permissions:\n  contents: read", workflow)
+            self.assertIn("actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683", workflow)
+            self.assertIn("persist-credentials: false", workflow)
+            self.assertIn("runs-on: ubuntu-24.04", workflow)
+        self.assertIn("schedule:", online)
+        self.assertIn("workflow_dispatch:", online)
+        self.assertNotIn("\n  push:", online)
+        self.assertNotIn("git push", online)
+        self.assertIn("scripts/audit_history.py", offline)
 
 
 if __name__ == "__main__":

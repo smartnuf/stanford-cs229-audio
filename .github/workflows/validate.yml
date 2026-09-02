@@ -1,0 +1,36 @@
+name: Offline validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Record runtime
+        run: python3 --version
+      - name: Check deterministic output
+        run: python3 scripts/generate_site.py --check
+      - name: Run offline tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Validate repository and feed
+        run: python3 scripts/validate_repo.py
+      - name: Audit all reachable Git history
+        run: python3 scripts/audit_history.py
+      - name: Check patch hygiene and clean generation
+        run: |
+          git diff --check
+          git diff --exit-code
+          test -z "$(git status --porcelain=v1)"

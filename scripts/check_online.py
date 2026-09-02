@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import hashlib
 import json
 import socket
@@ -18,7 +19,8 @@ from feedlib import ROOT, load_catalog
 
 USER_AGENT = "cs229-audio-feed-integrity-check/1.0 (+https://github.com/smartnuf/cs229-unofficial-audio-feed)"
 RETRIES = 3
-TIMEOUT_SECONDS = 30
+TIMEOUT_SECONDS = 15
+MAX_WORKERS = 8
 TRANSIENT_HTTP = {408, 425, 429, 500, 502, 503, 504}
 MEDIA_TYPES = {"audio/mp4", "audio/x-m4a"}
 
@@ -132,6 +134,53 @@ def check_enclosure(url: str, expected_size: int, label: str) -> dict:
     }
 
 
+def check_archive_metadata(publication: dict, episodes: list) -> dict:
+    identifier = publication["media"]["internet_archive_identifier"]
+    url = f"https://archive.org/metadata/{identifier}"
+    result = request(url, method="GET", read_all=True)
+    require_status(result, {200}, "Internet Archive metadata")
+    try:
+        document = json.loads(result["body"])
+    except json.JSONDecodeError as error:
+        raise SemanticFailure("Internet Archive metadata is not valid JSON") from error
+    metadata = document.get("metadata", {})
+    if metadata.get("identifier") != identifier:
+        raise SemanticFailure("Internet Archive identifier mismatch")
+    if metadata.get("title") != publication["feed"]["title"]:
+        raise SemanticFailure("Internet Archive title mismatch")
+    if metadata.get("licenseurl") != publication["license"]["url"]:
+        raise SemanticFailure("Internet Archive licence URL mismatch")
+
+    expected_hashes = json.loads((ROOT / "data" / "archive-hashes.json").read_text())["records"]
+    hashes_by_name = {row["filename"]: row for row in expected_hashes}
+    files_by_name = {row.get("name"): row for row in document.get("files", []) if row.get("name")}
+    expected_names = [episode.filename for episode in episodes]
+    actual_m4a_names = sorted(name for name in files_by_name if name.lower().endswith(".m4a"))
+    if actual_m4a_names != expected_names:
+        raise SemanticFailure("Internet Archive M4A inventory differs from canonical 20 files")
+    records = []
+    for episode in episodes:
+        remote = files_by_name[episode.filename]
+        expected = hashes_by_name[episode.filename]
+        if remote.get("source") != "original":
+            raise SemanticFailure(f"{episode.filename}: Internet Archive file is not marked original")
+        if int(remote.get("size", -1)) != episode.size_bytes:
+            raise SemanticFailure(f"{episode.filename}: Internet Archive size mismatch")
+        if remote.get("md5") != expected["md5"] or remote.get("sha1") != expected["sha1"]:
+            raise SemanticFailure(f"{episode.filename}: Internet Archive exposed hash mismatch")
+        records.append({
+            "filename": episode.filename, "source": remote["source"],
+            "size_bytes": int(remote["size"]), "md5": remote["md5"], "sha1": remote["sha1"],
+        })
+    public_files = json.loads((ROOT / "data" / "archive-item.json").read_text())["public_files"]
+    missing_public_files = sorted(set(public_files) - set(files_by_name))
+    if missing_public_files:
+        raise SemanticFailure("Internet Archive item lacks approved public files: "
+                              + ", ".join(missing_public_files))
+    return {"url": url, "identifier": identifier, "canonical_originals": records,
+            "approved_files_present": len(public_files)}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, help="write detailed JSON report")
@@ -144,6 +193,7 @@ def main() -> int:
         "network_failures": [],
         "semantic_failures": [],
         "documents": {},
+        "archive_item": None,
         "enclosures": [],
         "source_links": [],
     }
@@ -166,29 +216,43 @@ def main() -> int:
         except SemanticFailure as error:
             report["semantic_failures"].append(str(error))
 
+    try:
+        report["archive_item"] = check_archive_metadata(publication, episodes)
+    except NetworkUnavailable as error:
+        report["network_failures"].append(str(error))
+    except SemanticFailure as error:
+        report["semantic_failures"].append(str(error))
+
+    operations = []
     for episode in episodes:
         label = f"lecture {episode.number:02d} enclosure"
-        try:
-            report["enclosures"].append(check_enclosure(
-                episode.enclosure_url, episode.size_bytes, label))
-        except NetworkUnavailable as error:
-            report["network_failures"].append(str(error))
-        except SemanticFailure as error:
-            report["semantic_failures"].append(str(error))
+        operations.append(("enclosure", episode.number, None, lambda episode=episode, label=label:
+                           check_enclosure(episode.enclosure_url, episode.size_bytes, label)))
         for kind, url in (
             ("source_video", episode.source_video_url),
             ("transcript_html", episode.transcript_html_url),
             ("transcript_pdf", episode.transcript_pdf_url),
         ):
+            operations.append(("source", episode.number, kind, lambda number=episode.number, kind=kind, url=url:
+                               check_link(url, f"lecture {number:02d} {kind}")))
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        futures = {executor.submit(operation): (category, number, kind)
+                   for category, number, kind, operation in operations}
+        for future in concurrent.futures.as_completed(futures):
+            category, number, kind = futures[future]
             try:
-                report["source_links"].append({
-                    "lecture": episode.number, "kind": kind,
-                    **check_link(url, f"lecture {episode.number:02d} {kind}"),
-                })
+                result = future.result()
+                if category == "enclosure":
+                    report["enclosures"].append({"lecture": number, **result})
+                else:
+                    report["source_links"].append({"lecture": number, "kind": kind, **result})
             except NetworkUnavailable as error:
                 report["network_failures"].append(str(error))
             except SemanticFailure as error:
                 report["semantic_failures"].append(str(error))
+    report["enclosures"].sort(key=lambda row: row["lecture"])
+    report["source_links"].sort(key=lambda row: (row["lecture"], row["kind"]))
 
     if report["semantic_failures"]:
         report["result"] = "semantic_failure"
@@ -204,6 +268,7 @@ def main() -> int:
     print(json.dumps({
         "result": report["result"],
         "documents": len(report["documents"]),
+        "archive_item": report["archive_item"] is not None,
         "enclosures": len(report["enclosures"]),
         "source_links": len(report["source_links"]),
         "network_failures": len(report["network_failures"]),
