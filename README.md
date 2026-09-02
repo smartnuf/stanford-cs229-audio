@@ -36,6 +36,7 @@ without this feed being submitted to a directory.
 - `zenodo/` — published deposit metadata, DOI and verification instructions
 - `contact/castbox-restoration.md` — prepared but unsent restoration message
 - `docs/` — generated GitHub Pages site
+- `FUTURE-DIRECTIONS.md` — parked maintenance, reuse and discoverability ideas
 
 ## Local verification
 
@@ -52,6 +53,10 @@ git diff --check
 Building the preservation package additionally requires FFprobe and the 20
 verified source M4As outside Git. See `OPERATIONS.md` for exact commands,
 release recovery, online verification and later feed-domain migration.
+
+Possible future work is recorded in [`FUTURE-DIRECTIONS.md`](FUTURE-DIRECTIONS.md).
+It separates collection-specific maintenance from a potential reusable
+preservation toolkit and does not authorize publication or outreach.
 
 The `Client compatibility` workflow runs a weekly smoke test and offers a
 manual `full` mode. Smoke mode checks all RSS identities, uses a fresh gPodder
