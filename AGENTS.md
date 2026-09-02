@@ -1,84 +1,96 @@
 # Repository invariants for maintainers and agents
 
-This repository publishes metadata and a static RSS feed for an unofficial,
-non-commercial preservation edition of Stanford SEE's CS229 lectures. It never
-stores the lecture media.
+This repository publishes metadata, tooling and a static RSS feed for an
+unofficial, non-commercial preservation edition of Stanford SEE's CS229
+lectures. GitHub Releases hold the versioned media; Git history never does.
 
 ## Non-negotiable invariants
 
-- Keep all M4A/MP4 media and transport ZIPs outside this repository.
-- Never commit credentials, tokens, cookies, private configuration, contact
-  addresses that have not been approved for disclosure, or private
-  correspondence.
-- Do not change an episode GUID, its GUID seed, filename, enclosure URL, or
-  enclosure length casually. Podcast clients treat those values as identity.
-- Do not invent publication dates, lecture dates, descriptions, ownership, or
-  provenance. Episode order is represented by deterministic item order and
+- Keep all M4A/MP4 media, master/transport ZIPs and extracted staging trees out
+  of Git. Release assets are not repository blobs.
+- Never commit credentials, tokens, cookies, private configuration, unapproved
+  contact addresses or private correspondence.
+- Never change episode GUIDs, the GUID namespace/seed, release tag, canonical
+  asset names, enclosure URLs or enclosure lengths casually. Podcast clients
+  treat GUIDs as episode identity and enclosure URLs as durable media identity.
+- Do not invent publication dates, lecture dates, titles, ownership or
+  provenance. Preserve ordering through deterministic item order and
   `itunes:episode` in a serial feed.
-- Preserve Andrew Ng as lecturer and Stanford Engineering Everywhere as source.
-  Do not imply Stanford or Andrew Ng endorses this edition or that this project
-  owns the underlying lectures.
-- Preserve CC BY-NC-SA 4.0 attribution, licence link, adaptation notice, and the
-  non-commercial/no-advertising/no-sponsorship posture.
-- Never submit the feed to Apple Podcasts, Spotify, Castbox, Podcast Index, or
-  another directory unless a separately authorized task explicitly says so.
-- Never send the draft Stanford or Castbox correspondence from this repository.
+- Preserve Andrew Ng as lecturer and Stanford Engineering Everywhere as the
+  original source. Do not imply endorsement or ownership by this project.
+- Preserve CC BY-NC-SA 4.0 attribution, licence link, adaptation notice,
+  ShareAlike terms and the no-commercial-purpose posture.
+- Do not submit the feed to Apple Podcasts, Spotify, Castbox, Podcast Index or
+  another directory, and never send the prepared restoration correspondence,
+  unless a separately authorized task explicitly says so.
+- Do not alter or delete the partial Internet Archive item created during an
+  abandoned publication attempt. It is not an enclosure source for this feed.
+
+## Fixed v1.0 identities
+
+- Repository: `smartnuf/stanford-cs229-audio`
+- Pages: `https://smartnuf.github.io/stanford-cs229-audio/`
+- Feed: `https://smartnuf.github.io/stanford-cs229-audio/feed.xml`
+- Release tag: `audio-v1.0.0`
+- Release assets: `CS229-lecture01.m4a` through `CS229-lecture20.m4a`, the
+  canonical v1.0 ZIP, and the exact sidecars in `data/release-assets.json`
+- Canonical ZIP: `stanford-cs229-machine-learning-audio-edition-v1.0.zip`
 
 ## Human gates
 
-Explicit human approval is required before any of these operations:
+Explicit human approval is required before:
 
-- creating or uploading an Internet Archive item;
-- creating a public GitHub repository, pushing the initial history, or enabling
-  GitHub Pages;
-- disclosing a contact email address;
-- changing the Internet Archive identifier;
-- overwriting or deleting any existing remote item or repository;
-- changing public feed identity, GUIDs, or enclosure URLs;
-- starting a feed migration.
+- publishing a Zenodo record or otherwise minting a DOI;
+- disclosing a new public contact email;
+- overwriting/deleting an existing remote repository, release, asset or record;
+- changing public feed identity, GUIDs, enclosure URLs or release asset bytes;
+- starting a feed migration or custom-domain change;
+- sending correspondence or submitting the feed to a directory.
 
-The initial publication approval must name the exact Internet Archive
-identifier, GitHub owner/repository, Pages/feed URLs, title, metadata, public
-files, contact-email decision, licence, and unofficial wording.
+A Zenodo draft may be created and populated when existing authentication is
+available. Its exact metadata, inventory and hashes must be shown for approval
+before publication.
 
 ## Required validation
 
-Use Python 3.10 or newer; the repository has no third-party runtime dependency.
+Use Python 3.10 or newer:
 
 ```bash
 python scripts/generate_site.py --check
 python -m unittest discover -s tests -v
 python scripts/validate_repo.py
+python scripts/audit_history.py
 git diff --check
+git diff --exit-code
 ```
 
-After publication, run the read-only network integration check:
+Package validation must use fresh output/extraction paths and the commands in
+`OPERATIONS.md`. After publication run:
 
 ```bash
 python scripts/check_online.py --output online-report.json
 ```
 
-The online checker must remain bounded, read-only, and distinguish transport
-unavailability from semantic failures. It must never rewrite feeds or remote
-resources.
+The online checker is bounded and read-only. It must distinguish transport
+unavailability from semantic failure and must test both the first and last byte
+of all 20 enclosures.
 
-## Publication limits
+## Repository safety
 
-- The Internet Archive item contains the 20 canonical `lectureNN.m4a` files,
-  cover, notice, media-licence statement, source map, verification report, and
-  checksums—nothing credential-bearing or private.
-- The Git repository contains only metadata, provenance, generator/validator
-  code, tests, CI, documentation, artwork, and generated static pages.
-- Keep every tracked file below 5 MiB. Validation must fail on forbidden media,
-  archives, credential filenames/signatures, or files at/above that threshold.
-- GitHub Actions use read-only default permissions. Scheduled link checks do not
-  commit, push, upload, or mutate external resources.
+- Keep every tracked file below 5 MiB.
+- Validation must reject forbidden media/archive/key types, credential
+  filenames/signatures, symlinks and generated staging directories.
+- Audit every reachable Git blob and commit identity before the first push.
+- GitHub Actions have read-only permissions, pinned actions and no persisted
+  checkout credentials. Scheduled checks never commit, push or mutate anything.
+- Do not tag or release a commit until its complete local validation passes.
+- Tie CI and Pages evidence to the exact public head SHA.
 
-## Feed migration
+## Recovery and migration
 
-The initial feed is served from GitHub Pages without a custom domain. A future
-migration must retain all item GUIDs and enclosure URLs. Follow `OPERATIONS.md`:
-publish the new feed first, validate it, then add the standard
-`itunes:new-feed-url` migration element to the old feed and retain the old URL
-for a documented transition. Never repurpose the old feed URL for a different
-show.
+Follow `OPERATIONS.md`. The canonical master ZIP and its SHA-256 are the
+preservation unit; the 20 individual release assets must match its audio files.
+Any future host/domain migration retains every GUID. Publish and validate the
+new feed first, then use `itunes:new-feed-url` and a real permanent redirect
+while retaining the old URL for a documented transition. Never reuse this feed
+URL for another show.
