@@ -88,7 +88,10 @@ python scripts/check_online.py --output online-report.json
 
 The online checker is bounded and read-only. It must distinguish transport
 unavailability from semantic failure and must test both the first and last byte
-of all 20 enclosures.
+of all 20 enclosures. GitHub CDN's generic `application/octet-stream` is an
+explicit P3 warning, accepted only alongside exact Release API `audio/mp4`,
+digests, lengths, HTTPS, `HEAD`, and range evidence; never report the CDN header
+itself as audio-specific.
 
 ## Repository safety
 

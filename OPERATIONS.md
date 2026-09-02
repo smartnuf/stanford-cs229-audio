@@ -108,10 +108,13 @@ test -z "$(git status --porcelain=v1)"
 The online checker requires exact live feed/site/artwork bytes; the exact public
 immutable release inventory and mandatory GitHub SHA-256 digests; source and
 transcript reachability; actual successful `HEAD`; exact length; HTTPS
-redirects; an audio-specific M4A content type; and first/last `206` byte ranges
-for every enclosure and the master ZIP. It resolves the release tag to the
-separately pinned release commit. Exit 1 is a semantic failure; exit 2 is
-bounded network unavailability.
+redirects; and first/last `206` byte ranges for every enclosure and the master
+ZIP. GitHub's Release API must preserve `audio/mp4` for every M4A. Its download
+CDN may return the generic `application/octet-stream` only when all stronger
+identity, digest, length, HTTPS, `HEAD`, and range checks pass; the report must
+record that P3 compatibility warning and the iPhone test remains mandatory. It
+resolves the release tag to the separately pinned release commit. Exit 1 is a
+semantic failure; exit 2 is bounded network unavailability.
 
 Tie every external status to the same full SHA:
 

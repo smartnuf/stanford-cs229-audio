@@ -22,7 +22,7 @@ USER_AGENT = "stanford-cs229-audio-integrity/1.0"
 RETRIES = 3
 TIMEOUT = 15
 TRANSIENT = {408, 425, 429, 500, 502, 503, 504}
-MEDIA_TYPES = {"audio/mp4", "audio/x-m4a"}
+MEDIA_TYPES = {"audio/mp4", "audio/x-m4a", "application/octet-stream"}
 
 
 class NetworkUnavailable(RuntimeError):
@@ -210,6 +210,11 @@ def check_release(publication: dict, expected_release_commit: str) -> dict:
         wanted, found = expected[name], actual[name]
         if found.get("size") != wanted["size_bytes"] or found.get("state") != "uploaded":
             raise SemanticFailure(f"Release asset state/size mismatch: {name}")
+        if (wanted["role"] == "podcast_enclosure"
+                and found.get("content_type") not in {"audio/mp4", "audio/x-m4a"}):
+            raise SemanticFailure(f"Release API enclosure content type mismatch: {name}")
+        if wanted["role"] == "master_archive" and found.get("content_type") != "application/zip":
+            raise SemanticFailure("Release API master archive content type mismatch")
         digest = found.get("digest")
         if digest != f"sha256:{wanted['sha256']}":
             raise SemanticFailure(f"Release asset digest mismatch: {name}")
@@ -221,6 +226,7 @@ def check_release(publication: dict, expected_release_commit: str) -> dict:
             "size_bytes": found["size"],
             "state": found["state"],
             "digest": digest,
+            "content_type": found.get("content_type"),
             "url": found["browser_download_url"],
         })
     return {
@@ -265,6 +271,7 @@ def main() -> int:
         "result": "pass",
         "network_failures": [],
         "semantic_failures": [],
+        "compatibility_warnings": [],
         "documents": {},
         "release": None,
         "enclosures": [],
@@ -323,6 +330,18 @@ def main() -> int:
                 report["source_links"].append({"lecture": number, "kind": kind, **value})
     report["enclosures"].sort(key=lambda row: row["lecture"])
     report["source_links"].sort(key=lambda row: (row["lecture"], row["kind"]))
+    generic_enclosures = [row["lecture"] for row in report["enclosures"]
+                            if row["content_type"] == "application/octet-stream"]
+    if generic_enclosures:
+        report["compatibility_warnings"].append({
+            "code": "github_cdn_generic_enclosure_content_type",
+            "severity": "P3",
+            "lectures": generic_enclosures,
+            "message": (
+                "GitHub CDN serves these verified M4A assets as application/octet-stream; "
+                "release API and RSS metadata remain audio/mp4. Complete the documented "
+                "manual iPhone streaming/seeking/downloading test."),
+        })
     if report["semantic_failures"]:
         report["result"], exit_code = "semantic_failure", 1
     elif report["network_failures"]:
@@ -340,6 +359,7 @@ def main() -> int:
         "source_links": len(report["source_links"]),
         "network_failures": len(report["network_failures"]),
         "semantic_failures": len(report["semantic_failures"]),
+        "compatibility_warnings": len(report["compatibility_warnings"]),
     }, indent=2))
     return exit_code
 

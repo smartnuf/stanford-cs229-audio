@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "publication_status": "prepared",
+  "publication_status": "published",
   "feed": {
     "title": "CS229 Machine Learning — Unofficial Audio Preservation Edition",
     "description": "Andrew Ng's 20-lecture CS229 Machine Learning course, sourced from Stanford Engineering Everywhere and preserved as an audio-only edition without re-encoding. This independent preservation project is not endorsed by Stanford University or Andrew Ng.",
@@ -24,6 +24,7 @@
   "media": {
     "repository": "smartnuf/stanford-cs229-audio",
     "release_tag": "audio-v1.0.0",
+    "release_commit": "0b7f3cd90887362763c441267a030cdf45cf37e3",
     "release_url": "https://github.com/smartnuf/stanford-cs229-audio/releases/tag/audio-v1.0.0",
     "base_url": "https://github.com/smartnuf/stanford-cs229-audio/releases/download/audio-v1.0.0/",
     "mime_type": "audio/mp4"
