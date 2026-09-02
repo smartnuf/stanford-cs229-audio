@@ -28,6 +28,7 @@ class Episode:
     title: str
     duration_seconds: float
     duration: str
+    source_filename: str
     filename: str
     size_bytes: int
     sha256: str
@@ -84,6 +85,7 @@ def load_catalog(root: Path = ROOT) -> tuple[dict, list[Episode]]:
         number = lecture["number"]
         media = media_by_number[number]
         source = source_by_number[number]
+        release_filename = f"CS229-lecture{number:02d}.m4a"
         if source["title"] != lecture["title"]:
             raise ValueError(f"Source-map title mismatch for lecture {number}")
         if source["duration"] != duration_text(lecture["duration_seconds"]):
@@ -99,13 +101,14 @@ def load_catalog(root: Path = ROOT) -> tuple[dict, list[Episode]]:
             title=lecture["title"],
             duration_seconds=lecture["duration_seconds"],
             duration=duration_text(lecture["duration_seconds"]),
-            filename=media["filename"],
+            source_filename=media["filename"],
+            filename=release_filename,
             size_bytes=media["size_bytes"],
             sha256=media["sha256"],
             source_video_url=source["video_url"],
             transcript_html_url=source["transcript_html_url"],
             transcript_pdf_url=source["transcript_pdf_url"],
-            enclosure_url=urljoin(publication["media"]["base_url"], media["filename"]),
+            enclosure_url=urljoin(publication["media"]["base_url"], release_filename),
             guid=episode_guid(publication, number),
         ))
     return publication, episodes
@@ -137,7 +140,9 @@ def validate_catalog(publication: dict, episodes: list[Episode]) -> None:
     if urlparse(publication["media"]["base_url"]).scheme != "https":
         raise ValueError("Media base URL must use HTTPS")
     for episode in episodes:
-        if episode.filename != f"lecture{episode.number:02d}.m4a":
+        if episode.source_filename != f"lecture{episode.number:02d}.m4a":
+            raise ValueError(f"Unexpected source filename for lecture {episode.number}")
+        if episode.filename != f"CS229-lecture{episode.number:02d}.m4a":
             raise ValueError(f"Unexpected filename for lecture {episode.number}")
         if episode.duration != duration_text(episode.duration_seconds):
             raise ValueError(f"Duration mismatch for lecture {episode.number}")
@@ -167,7 +172,7 @@ def build_feed(publication: dict, episodes: list[Episode]) -> bytes:
     add_text(channel, "description", feed["description"])
     add_text(channel, "language", feed["language"])
     add_text(channel, "copyright", f"Source lectures © Stanford University and/or identified rights holders; adaptation {licence['short_name']}")
-    add_text(channel, "generator", "stanford-cs229-audio-feed deterministic generator")
+    add_text(channel, "generator", "stanford-cs229-audio deterministic generator")
     ET.SubElement(channel, f"{{{NS_ATOM}}}link", {
         "href": feed["feed_url"], "rel": "self", "type": "application/rss+xml",
     })
@@ -259,6 +264,7 @@ def build_index(publication: dict, episodes: list[Episode]) -> bytes:
           <h1>{html.escape(feed['title'])}</h1>
           <p>{html.escape(feed['description'])}</p>
           <p><a class="subscribe" href="feed.xml">Open or copy the RSS feed</a></p>
+          <p><a href="{html.escape(publication['media']['release_url'])}">Download the verified audio and canonical preservation ZIP</a></p>
           <p>Add the feed URL manually in a podcast application that supports URL subscriptions.</p>
         </div>
       </header>
@@ -270,6 +276,7 @@ def build_index(publication: dict, episodes: list[Episode]) -> bytes:
       </section>
       <footer>
         <p>Lecturer: Andrew Ng. Source: <a href="{html.escape(course['source_url'])}">Stanford Engineering Everywhere CS229</a>.</p>
+        <p><a href="https://github.com/{html.escape(publication['media']['repository'])}">Metadata, source map, checksums and validation tooling</a>.</p>
         <p>Unofficial audio-only adaptation; not endorsed by Stanford University or Andrew Ng. Licensed <a href="{html.escape(licence['url'])}">{html.escape(licence['short_name'])}</a>. No monetization, advertising, sponsorship, or commercial purpose.</p>
       </footer>
     </main>

@@ -26,6 +26,8 @@ EXPECTED_EPISODE_NAMESPACE = "89a4ee68-d293-55c5-aba9-ca5d1627d6a8"
 EXPECTED_FIRST_GUID = "urn:uuid:b504132c-3181-5bc1-99dd-b114c9454842"
 EXPECTED_LAST_GUID = "urn:uuid:a4cecbba-ea7a-5306-8f05-d9f014a381b0"
 EXPECTED_COVER_SHA256 = "771c71f6720e573bf3aaa9190ff37794873a893d99de05683f2e4da370756c06"
+EXPECTED_MASTER_ZIP_SIZE = 1_798_288_291
+EXPECTED_MASTER_ZIP_SHA256 = "9a4403e05e68ef83f8c311a9fa8ca7b172268d61ce1b909ed97b239806566277"
 FORBIDDEN_SUFFIXES = {
     ".m4a", ".mp4", ".m4v", ".mov", ".zip", ".tar", ".tgz", ".gz", ".xz",
     ".p12", ".pfx", ".pem", ".key",
@@ -56,7 +58,11 @@ def fail(condition: bool, message: str) -> None:
 def repository_files(root: Path = ROOT) -> list[Path]:
     command = ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"]
     result = subprocess.run(command, cwd=root, check=True, capture_output=True)
-    return [root / name.decode("utf-8") for name in result.stdout.split(b"\0") if name]
+    deleted_result = subprocess.run(
+        ["git", "ls-files", "--deleted", "-z"], cwd=root, check=True, capture_output=True)
+    deleted = {name for name in deleted_result.stdout.split(b"\0") if name}
+    return [root / name.decode("utf-8") for name in result.stdout.split(b"\0")
+            if name and name not in deleted]
 
 
 def validate_repository_safety(root: Path = ROOT) -> dict:
@@ -128,49 +134,72 @@ def validate_manifests(root: Path = ROOT) -> dict:
         checksum_rows[filename] = digest
     fail(len(checksum_rows) != 20, "SHA256SUMS must have exactly 20 rows")
     for episode in episodes:
-        fail(checksum_rows.get(episode.filename) != episode.sha256,
-             f"Checksum mismatch for {episode.filename}")
+        fail(checksum_rows.get(episode.source_filename) != episode.sha256,
+             f"Checksum mismatch for {episode.source_filename}")
         fail(not re.fullmatch(r"[0-9a-f]{64}", episode.sha256),
              f"Invalid SHA-256 for {episode.filename}")
-    archive_hash_document = json.loads((root / "data" / "archive-hashes.json").read_text())
-    archive_hashes = archive_hash_document.get("records", [])
-    fail(archive_hash_document.get("schema_version") != 1 or len(archive_hashes) != 20,
-         "Archive exposed-hash manifest must contain 20 rows")
-    fail([row.get("filename") for row in archive_hashes]
-         != [episode.filename for episode in episodes], "Archive hash filenames/order changed")
-    for row in archive_hashes:
-        fail(not re.fullmatch(r"[0-9a-f]{32}", row.get("md5", "")),
-             f"Invalid MD5 for {row.get('filename')}")
-        fail(not re.fullmatch(r"[0-9a-f]{40}", row.get("sha1", "")),
-             f"Invalid SHA-1 for {row.get('filename')}")
-    archive = json.loads((root / "data" / "archive-item.json").read_text())
-    expected_public_files = [f"lecture{number:02d}.m4a" for number in range(1, 21)] + [
-        "cover.jpg", "NOTICE.md", "LICENSE-MEDIA.md", "source-map.csv",
-        "media-verification-2026-09-02.json", "SHA256SUMS",
+    release = publication["media"]
+    fail(release.get("repository") != "smartnuf/stanford-cs229-audio",
+         "Release repository changed")
+    fail(release.get("release_tag") != "audio-v1.0.0", "Release tag changed")
+    expected_base = ("https://github.com/smartnuf/stanford-cs229-audio/"
+                     "releases/download/audio-v1.0.0/")
+    fail(release.get("base_url") != expected_base, "Release asset base URL changed")
+    fail(release.get("release_url") !=
+         "https://github.com/smartnuf/stanford-cs229-audio/releases/tag/audio-v1.0.0",
+         "Release page URL changed")
+    release_assets = json.loads((root / "data" / "release-assets.json").read_text())
+    assets = release_assets.get("assets", [])
+    fail(release_assets.get("schema_version") != 1 or release_assets.get("asset_count") != 27,
+         "Release asset manifest count/schema mismatch")
+    fail(release_assets.get("repository") != release["repository"]
+         or release_assets.get("tag") != release["release_tag"],
+         "Release asset manifest identity mismatch")
+    expected_media_names = [episode.filename for episode in episodes]
+    fail([row.get("name") for row in assets[:20]] != expected_media_names,
+         "Release enclosure names/order mismatch")
+    for episode, row in zip(episodes, assets[:20], strict=True):
+        fail(row.get("role") != "podcast_enclosure"
+             or row.get("size_bytes") != episode.size_bytes
+             or row.get("sha256") != episode.sha256,
+             f"Release enclosure manifest mismatch: {episode.filename}")
+    expected_support_names = [
+        "stanford-cs229-machine-learning-audio-edition-v1.0.zip",
+        "stanford-cs229-machine-learning-audio-edition-v1.0.zip.sha256",
+        "MANIFEST.json", "SHA256SUMS", "README.md", "LICENSE.md", "PROVENANCE.md",
     ]
-    fail(archive.get("schema_version") != 1, "Archive-item schema changed")
-    fail(archive.get("identifier") != publication["media"]["internet_archive_identifier"],
-         "Archive identifier differs from enclosure configuration")
-    fail(archive.get("public_files") != expected_public_files,
-         "Internet Archive public-file allowlist changed")
-    archive_metadata = archive.get("metadata", {})
-    fail(archive_metadata.get("title") != EXPECTED_TITLE, "Archive title mismatch")
-    fail(archive_metadata.get("creator") != "Andrew Ng (lecturer)", "Archive creator wording mismatch")
-    fail(archive_metadata.get("date") != "2007" or archive_metadata.get("year") != "2007",
-         "Archive recording year must remain 2007")
-    fail(archive_metadata.get("licenseurl") != publication["license"]["url"],
-         "Archive licence URL mismatch")
-    for required in ("Autumn 2007", "launched in 2008", "without re-encoding",
-                     "No separate authorization", "No monetization"):
-        fail(required not in archive_metadata.get("description", ""),
-             "Archive description lacks required provenance/unofficial wording")
+    fail([row.get("name") for row in assets[20:]] != expected_support_names,
+         "Release support asset names/order mismatch")
+    master = assets[20]
+    fail(master.get("role") != "master_archive"
+         or master.get("size_bytes") != EXPECTED_MASTER_ZIP_SIZE
+         or master.get("sha256") != EXPECTED_MASTER_ZIP_SHA256,
+         "Canonical master ZIP identity mismatch")
+    for row in assets:
+        fail(not isinstance(row.get("size_bytes"), int) or row["size_bytes"] <= 0,
+             f"Invalid release asset size: {row.get('name')}")
+        fail(not re.fullmatch(r"[0-9a-f]{64}", row.get("sha256", "")),
+             f"Invalid release asset SHA-256: {row.get('name')}")
+    zenodo = json.loads((root / "zenodo" / "metadata.json").read_text())["metadata"]
+    fail(zenodo.get("upload_type") != "video" or zenodo.get("version") != "1.0",
+         "Zenodo type/version mismatch")
+    fail(zenodo.get("license") != "cc-by-nc-sa-4.0"
+         or zenodo.get("access_right") != "open", "Zenodo access/licence mismatch")
+    fail(zenodo.get("creators") != [{"name": "Ackland, Andrew"}],
+         "Zenodo preservation-curator creator changed")
+    for required in ("preservation curator/depositor", "Andrew Ng is the course lecturer",
+                     "neither is represented as having authored or endorsed"):
+        fail(required not in zenodo.get("description", ""),
+             "Zenodo description lacks role/non-endorsement wording")
     return {
         "episodes": len(episodes),
         "total_enclosure_bytes": sum(episode.size_bytes for episode in episodes),
         "channel_guid": channel_guid(publication),
         "first_episode_guid": episode_guid(publication, 1),
         "last_episode_guid": episode_guid(publication, 20),
-        "archive_public_files": len(expected_public_files),
+        "release_media_assets": len(episodes),
+        "release_assets": len(assets),
+        "master_zip_sha256": master["sha256"],
     }
 
 

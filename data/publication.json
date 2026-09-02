@@ -7,9 +7,9 @@
     "explicit": false,
     "type": "serial",
     "category": "Education",
-    "site_url": "https://smartnuf.github.io/cs229-unofficial-audio-feed/",
-    "feed_url": "https://smartnuf.github.io/cs229-unofficial-audio-feed/feed.xml",
-    "artwork_url": "https://smartnuf.github.io/cs229-unofficial-audio-feed/cover.jpg"
+    "site_url": "https://smartnuf.github.io/stanford-cs229-audio/",
+    "feed_url": "https://smartnuf.github.io/stanford-cs229-audio/feed.xml",
+    "artwork_url": "https://smartnuf.github.io/stanford-cs229-audio/cover.jpg"
   },
   "course": {
     "code": "CS229",
@@ -21,8 +21,10 @@
     "see_publication_era": "2008"
   },
   "media": {
-    "internet_archive_identifier": "cs229-machine-learning-unofficial-audio-preservation",
-    "base_url": "https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/",
+    "repository": "smartnuf/stanford-cs229-audio",
+    "release_tag": "audio-v1.0.0",
+    "release_url": "https://github.com/smartnuf/stanford-cs229-audio/releases/tag/audio-v1.0.0",
+    "base_url": "https://github.com/smartnuf/stanford-cs229-audio/releases/download/audio-v1.0.0/",
     "mime_type": "audio/mp4"
   },
   "license": {

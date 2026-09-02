@@ -32,7 +32,8 @@ class MetadataTests(unittest.TestCase):
 
     def test_exact_enclosure_lengths_and_total(self) -> None:
         manifest = json.loads((ROOT / "data" / "media-manifest.json").read_text())
-        expected = {row["filename"]: row["size_bytes"] for row in manifest["records"]}
+        expected = {f"CS229-lecture{row['lecture']:02d}.m4a": row["size_bytes"]
+                    for row in manifest["records"]}
         self.assertEqual(
             {episode.filename: episode.size_bytes for episode in self.episodes}, expected)
         self.assertEqual(sum(expected.values()), 1_798_240_224)
@@ -60,18 +61,15 @@ class MetadataTests(unittest.TestCase):
                              "https://see.stanford.edu/materials/aimlcs229/transcripts/"
                              f"MachineLearning-Lecture{number:02d}.pdf")
 
-    def test_archive_item_allowlist_and_metadata(self) -> None:
+    def test_release_identity_and_asset_names(self) -> None:
         result = validate_repo.validate_manifests()
-        self.assertEqual(result["archive_public_files"], 26)
-        archive = json.loads((ROOT / "data" / "archive-item.json").read_text())
-        self.assertEqual(archive["identifier"],
-                         "cs229-machine-learning-unofficial-audio-preservation")
-        self.assertEqual(archive["public_files"][:20],
-                         [f"lecture{number:02d}.m4a" for number in range(1, 21)])
-        self.assertNotIn("stanford-restoration-request.md", archive["public_files"])
-        exposed_hashes = json.loads((ROOT / "data" / "archive-hashes.json").read_text())
-        self.assertEqual([row["filename"] for row in exposed_hashes["records"]],
-                         [f"lecture{number:02d}.m4a" for number in range(1, 21)])
+        self.assertEqual(result["release_media_assets"], 20)
+        self.assertEqual([episode.filename for episode in self.episodes],
+                         [f"CS229-lecture{number:02d}.m4a" for number in range(1, 21)])
+        self.assertTrue(all("/releases/download/audio-v1.0.0/" in episode.enclosure_url
+                            for episode in self.episodes))
+        self.assertTrue(all(episode.enclosure_url.endswith("/" + episode.filename)
+                            for episode in self.episodes))
 
 
 class FeedTests(unittest.TestCase):
@@ -137,6 +135,26 @@ class FeedTests(unittest.TestCase):
     def test_no_invented_dates(self) -> None:
         self.assertNotIn(b"<pubDate>", self.raw)
         self.assertNotIn(b"<lastBuildDate>", self.raw)
+
+    def test_xml_escapes_metadata(self) -> None:
+        publication = json.loads(json.dumps(self.publication))
+        publication["feed"]["description"] = "Research & development <independent>"
+        raw = feedlib.build_feed(publication, self.episodes)
+        parsed = ET.fromstring(raw).find("channel")
+        self.assertIsNotNone(parsed)
+        assert parsed is not None
+        self.assertEqual(parsed.findtext("description"), "Research & development <independent>")
+        self.assertIn(b"Research &amp; development &lt;independent&gt;", raw)
+
+    def test_non_https_feed_url_is_rejected(self) -> None:
+        publication = json.loads(json.dumps(self.publication))
+        publication["feed"]["feed_url"] = "http://example.invalid/feed.xml"
+        with self.assertRaisesRegex(ValueError, "HTTPS"):
+            feedlib.validate_catalog(publication, self.episodes)
+
+    def test_duplicate_episode_number_is_rejected(self) -> None:
+        with self.assertRaisesRegex(ValueError, "exactly 01 through 20"):
+            feedlib.validate_catalog(self.publication, [self.episodes[0], *self.episodes[:-1]])
 
     def test_regeneration_is_byte_identical(self) -> None:
         self.assertEqual(feedlib.build_feed(self.publication, self.episodes), self.raw)

@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "access_right": "open",
+    "contributors": [
+      {
+        "name": "Ng, Andrew",
+        "type": "Other"
+      },
+      {
+        "name": "Stanford Engineering Everywhere",
+        "type": "HostingInstitution"
+      }
+    ],
+    "creators": [
+      {
+        "name": "Ackland, Andrew"
+      }
+    ],
+    "description": "<p>A canonical preservation package for the complete 20-lecture Stanford CS229 Machine Learning course taught by Andrew Ng and originally published by Stanford Engineering Everywhere. The primary payload is a deterministic ZIP containing 20 M4A files, checksums, a machine-readable manifest, provenance and licensing documentation. The AAC-LC audio streams were copied from Stanford's MP4 containers without decoding or re-encoding; the evidentiary limits are documented in PROVENANCE.md.</p><p>This is an independently prepared, non-commercial audio-preservation/adaptation edition. Andrew Ackland is identified only as preservation curator/depositor. Andrew Ng is the course lecturer, Stanford Engineering Everywhere is the original source, and neither is represented as having authored or endorsed this preservation edition. Original lectures remain copyright Stanford University and/or identified rights holders.</p>",
+    "keywords": [
+      "CS229",
+      "machine learning",
+      "Andrew Ng",
+      "Stanford Engineering Everywhere",
+      "university lectures",
+      "audio preservation",
+      "AAC",
+      "podcast"
+    ],
+    "license": "cc-by-nc-sa-4.0",
+    "publication_date": "2026-09-02",
+    "related_identifiers": [
+      {
+        "identifier": "https://see.stanford.edu/Course/CS229",
+        "relation": "isDerivedFrom",
+        "resource_type": "lesson"
+      },
+      {
+        "identifier": "https://github.com/smartnuf/stanford-cs229-audio",
+        "relation": "isDocumentedBy",
+        "resource_type": "software"
+      },
+      {
+        "identifier": "https://github.com/smartnuf/stanford-cs229-audio/releases/tag/audio-v1.0.0",
+        "relation": "isSupplementedBy",
+        "resource_type": "other"
+      }
+    ],
+    "title": "Stanford CS229 Machine Learning — Unofficial Audio Preservation Edition",
+    "upload_type": "video",
+    "version": "1.0"
+  }
+}

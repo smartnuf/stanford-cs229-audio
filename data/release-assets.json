@@ -1,0 +1,170 @@
+{
+  "asset_count": 27,
+  "assets": [
+    {
+      "name": "CS229-lecture01.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "25b63699a4bae0b873cf16b1349be92006973a41df40a941c94529c4bdd4dc6d",
+      "size_bytes": 81818286
+    },
+    {
+      "name": "CS229-lecture02.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "c4004d64cf7b459408ff7eba1fe080f4bb9f6bf69c22333d316504ae0180726b",
+      "size_bytes": 90871014
+    },
+    {
+      "name": "CS229-lecture03.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "822f7dece15f19cd6acb691eb04de56060e398b5b0a743ee905bf90bf6f17fda",
+      "size_bytes": 87256833
+    },
+    {
+      "name": "CS229-lecture04.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "b4c3766fc48c4735e4c49fe27f6065569670cd880d9aef14fce13c73d36a37b4",
+      "size_bytes": 87113618
+    },
+    {
+      "name": "CS229-lecture05.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "3829a2ef897842a8e2170cdd0f945f14ce7463e77990cdb2cf6a39e4944e62f3",
+      "size_bytes": 89982914
+    },
+    {
+      "name": "CS229-lecture06.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "6e166fac877e2448a771344bcfa5f00846a71656fefd04873ae059c75dc7e2e6",
+      "size_bytes": 87168405
+    },
+    {
+      "name": "CS229-lecture07.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "5a376761f179918c7ec33a634ef45ff1016f1f3790d8ef7e0ffe86c9a81b57d4",
+      "size_bytes": 90249836
+    },
+    {
+      "name": "CS229-lecture08.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "ebde64c87c60a90abe1da4ca64e883b4fee760a5c9986abf21a221c0dd5d06c1",
+      "size_bytes": 92121490
+    },
+    {
+      "name": "CS229-lecture09.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "93cce9a6c0e086782e5d5bfaadd39bc1d2f1c7260fbb086ada4901b392bdc755",
+      "size_bytes": 88543344
+    },
+    {
+      "name": "CS229-lecture10.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "5be92253112fa970f0e1ebf1ac070c6c9c5a214bfc60eea1e731c6229b9a1338",
+      "size_bytes": 86909446
+    },
+    {
+      "name": "CS229-lecture11.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "b5266efe4a5dd7f13908d3276f9284bb7aba6b58f76716d16d823177293b6a97",
+      "size_bytes": 98091614
+    },
+    {
+      "name": "CS229-lecture12.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "6c19526d3e36023bead0f506003e2f6ed336f763acb852ae6c5ecef377606cbe",
+      "size_bytes": 88622450
+    },
+    {
+      "name": "CS229-lecture13.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "ee9f6a2a56ae028508c0528a91718834f7650e8d007108b8f4312679d57acb5f",
+      "size_bytes": 89309320
+    },
+    {
+      "name": "CS229-lecture14.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "7c5708dc88ff6f459787c8e43d37b912b9f2d0615eb2055e561cc2da53347143",
+      "size_bytes": 96114228
+    },
+    {
+      "name": "CS229-lecture15.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "ea199ec53fe6005e6b60cf4fa77c3f80cc1c4a852a3d08c51080422438eb8166",
+      "size_bytes": 92106851
+    },
+    {
+      "name": "CS229-lecture16.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "e4af61c8cd67cca6380a56fa71050f9479ab2f39cd31e8ad8ba5c43f62d86983",
+      "size_bytes": 87098123
+    },
+    {
+      "name": "CS229-lecture17.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "80e0096a0d29bb8434ce1a2349687035712fe04e6cd5f4f9f2791691b7a832d1",
+      "size_bytes": 91745360
+    },
+    {
+      "name": "CS229-lecture18.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "43fccd770c765ab1d1e75be1f9116b236b3987a9d8340465105c14d1c1311d98",
+      "size_bytes": 91309941
+    },
+    {
+      "name": "CS229-lecture19.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "c837b3508221353dbb518e2cce67e852ca8a6d30dd590c3dd4af52640b1ac459",
+      "size_bytes": 90459081
+    },
+    {
+      "name": "CS229-lecture20.m4a",
+      "role": "podcast_enclosure",
+      "sha256": "ee327faf69afc9141d75f2ef4767953197ed3d8690baab04b8ff1101e0505c39",
+      "size_bytes": 91348070
+    },
+    {
+      "name": "stanford-cs229-machine-learning-audio-edition-v1.0.zip",
+      "role": "master_archive",
+      "sha256": "9a4403e05e68ef83f8c311a9fa8ca7b172268d61ce1b909ed97b239806566277",
+      "size_bytes": 1798288291
+    },
+    {
+      "name": "stanford-cs229-machine-learning-audio-edition-v1.0.zip.sha256",
+      "role": "master_checksum",
+      "sha256": "620b8d330bc8d3a6ae87cd6ed56ee85902477f2e40cd30b197246ab6a53e91d6",
+      "size_bytes": 121
+    },
+    {
+      "name": "MANIFEST.json",
+      "role": "metadata",
+      "sha256": "4f6c8c32ff73f294c84995fb40e6c3a766baf4e67d7117b929fd7c0ca3279d72",
+      "size_bytes": 35633
+    },
+    {
+      "name": "SHA256SUMS",
+      "role": "checksums",
+      "sha256": "1696504a866aca4824cb931c35b2caf478cbdb56043c6d979a70de6d97ddf579",
+      "size_bytes": 2153
+    },
+    {
+      "name": "README.md",
+      "role": "documentation",
+      "sha256": "73b1999bd0251f04b622de67fb53efe0743c15adc4ae1b61abf8addede8c51d9",
+      "size_bytes": 978
+    },
+    {
+      "name": "LICENSE.md",
+      "role": "documentation",
+      "sha256": "479da36e8f94ee676643117766ab846df494b6a7caae0fea34dbca4795cd42cd",
+      "size_bytes": 928
+    },
+    {
+      "name": "PROVENANCE.md",
+      "role": "documentation",
+      "sha256": "957dfabcd9dbf4a118a9752bb645b9e5c199ecfc54cb61731dbb5e300f802130",
+      "size_bytes": 2425
+    }
+  ],
+  "repository": "smartnuf/stanford-cs229-audio",
+  "schema_version": 1,
+  "tag": "audio-v1.0.0"
+}
