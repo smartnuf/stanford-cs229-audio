@@ -158,6 +158,18 @@ class FeedTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "HTTPS"):
             feedlib.validate_catalog(publication, self.episodes)
 
+    def test_published_feed_migration_retains_channel_identity(self) -> None:
+        publication = json.loads(json.dumps(self.publication))
+        publication["publication_status"] = "published"
+        publication["feed"]["feed_url"] = "https://podcast.example/feed.xml"
+        feedlib.validate_catalog(publication, self.episodes)
+        self.assertEqual(feedlib.channel_guid(publication),
+                         validate_repo.EXPECTED_CHANNEL_GUID)
+        self.assertEqual(feedlib.derived_channel_guid(publication),
+                         validate_repo.EXPECTED_CHANNEL_GUID)
+        self.assertEqual(publication["identity"]["channel_guid_seed"],
+                         validate_repo.EXPECTED_CHANNEL_GUID_SEED)
+
     def test_duplicate_episode_number_is_rejected(self) -> None:
         with self.assertRaisesRegex(ValueError, "exactly 01 through 20"):
             feedlib.validate_catalog(self.publication, [self.episodes[0], *self.episodes[:-1]])

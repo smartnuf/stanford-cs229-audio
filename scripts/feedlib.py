@@ -152,7 +152,8 @@ def validate_catalog(publication: dict, episodes: list[Episode]) -> None:
     normalized_feed_url = re.sub(r"^https?://", "", publication["feed"]["feed_url"]).rstrip("/")
     if uuid.UUID(identity["channel_guid_namespace"]) != PODCAST_GUID_NAMESPACE:
         raise ValueError("Podcasting 2.0 channel GUID namespace changed")
-    if identity["channel_guid_seed"] != normalized_feed_url:
+    if (publication.get("publication_status") == "prepared"
+            and identity["channel_guid_seed"] != normalized_feed_url):
         raise ValueError("Channel GUID seed must match the first public feed URL")
     if channel_guid(publication) != derived_channel_guid(publication):
         raise ValueError("Pinned channel GUID does not match its one-time derivation")
