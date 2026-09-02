@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "feed": {
+    "title": "CS229 Machine Learning — Unofficial Audio Preservation Edition",
+    "description": "Andrew Ng's 20-lecture CS229 Machine Learning course, sourced from Stanford Engineering Everywhere and preserved as an audio-only edition without re-encoding. This independent preservation project is not endorsed by Stanford University or Andrew Ng.",
+    "language": "en-us",
+    "explicit": false,
+    "type": "serial",
+    "category": "Education",
+    "site_url": "https://smartnuf.github.io/cs229-unofficial-audio-feed/",
+    "feed_url": "https://smartnuf.github.io/cs229-unofficial-audio-feed/feed.xml",
+    "artwork_url": "https://smartnuf.github.io/cs229-unofficial-audio-feed/cover.jpg"
+  },
+  "course": {
+    "code": "CS229",
+    "title": "Machine Learning",
+    "lecturer": "Andrew Ng",
+    "source_publisher": "Stanford Engineering Everywhere",
+    "source_url": "https://see.stanford.edu/Course/CS229",
+    "source_course_term": "Autumn 2007",
+    "see_publication_era": "2008"
+  },
+  "media": {
+    "internet_archive_identifier": "cs229-machine-learning-unofficial-audio-preservation",
+    "base_url": "https://archive.org/download/cs229-machine-learning-unofficial-audio-preservation/",
+    "mime_type": "audio/mp4"
+  },
+  "license": {
+    "name": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International",
+    "short_name": "CC BY-NC-SA 4.0",
+    "identifier": "cc-by-nc-sa-4.0",
+    "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "source_policy_url": "https://see.stanford.edu/UsingSEE"
+  },
+  "identity": {
+    "channel_guid": "b5a6f6d6-25ea-59dc-bc91-d8ae1887d8c0",
+    "episode_namespace": "89a4ee68-d293-55c5-aba9-ca5d1627d6a8",
+    "episode_name_template": "lecture-{number:02d}"
+  }
+}

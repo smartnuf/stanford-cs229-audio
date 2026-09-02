@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "course": {
+    "code": "CS229",
+    "title": "Machine Learning",
+    "instructor": "Andrew Ng",
+    "publisher": "Stanford Engineering Everywhere",
+    "course_url": "https://see.stanford.edu/Course/CS229",
+    "licence": "CC BY-NC-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "source_policy_url": "https://see.stanford.edu/UsingSEE"
+  },
+  "lectures": [
+    {"number": 1, "title": "Motivation and applications of machine learning", "duration_seconds": 4119.533333, "video_size_bytes": 1109238288, "topics": "Course logistics; definitions of machine learning; overview of supervised learning, learning theory, unsupervised learning, and reinforcement learning"},
+    {"number": 2, "title": "Supervised learning and linear regression", "duration_seconds": 4575.333333, "video_size_bytes": 1231944198, "topics": "Autonomous driving and ALVINN; linear regression; batch and stochastic gradient descent; normal equations"},
+    {"number": 3, "title": "Locally weighted and logistic regression", "duration_seconds": 4393.366667, "video_size_bytes": 1182861285, "topics": "Underfitting and overfitting; parametric and non-parametric algorithms; locally weighted regression; logistic regression; perceptron"},
+    {"number": 4, "title": "Generalized linear models", "duration_seconds": 4386.166667, "video_size_bytes": 1181213932, "topics": "Newton's method; exponential family; generalized linear models; multinomial and softmax regression"},
+    {"number": 5, "title": "Generative learning algorithms", "duration_seconds": 4530.633333, "video_size_bytes": 1219918324, "topics": "Discriminative and generative algorithms; Gaussian discriminant analysis; naive Bayes; Laplace smoothing"},
+    {"number": 6, "title": "Neural networks and SVM margins", "duration_seconds": 4388.9, "video_size_bytes": 1181700312, "topics": "Multinomial event model; non-linear classifiers; neural networks; support vector machines; functional and geometric margins"},
+    {"number": 7, "title": "Optimal-margin classifiers and kernels", "duration_seconds": 4544.066667, "video_size_bytes": 1223542394, "topics": "Optimal-margin classifier; Lagrange duality; KKT conditions; SVM dual; kernels"},
+    {"number": 8, "title": "Kernels, soft-margin SVM and SMO", "duration_seconds": 4638.3, "video_size_bytes": 1248917708, "topics": "Kernels; Mercer's theorem; soft-margin SVM; coordinate ascent; sequential minimal optimization; SVM applications"},
+    {"number": 9, "title": "Learning theory and uniform convergence", "duration_seconds": 4458.133333, "video_size_bytes": 1200419617, "topics": "Bias-variance tradeoff; empirical risk minimization; union bound; Hoeffding inequality; uniform convergence; sample complexity"},
+    {"number": 10, "title": "VC dimension and model selection", "duration_seconds": 4375.866667, "video_size_bytes": 1178252713, "topics": "Uniform convergence for infinite hypothesis classes; shattering and VC dimension; model selection; cross-validation; feature selection"},
+    {"number": 11, "title": "Diagnostics and practical machine learning advice", "duration_seconds": 4938.9, "video_size_bytes": 1329896253, "topics": "Bayesian statistics; regularization; online learning; debugging learning algorithms; bias and variance diagnostics; error analysis"},
+    {"number": 12, "title": "K-means and expectation maximization", "duration_seconds": 4462.133333, "video_size_bytes": 1201582293, "topics": "Unsupervised learning; k-means; mixtures of Gaussians; Jensen's inequality; expectation maximization"},
+    {"number": 13, "title": "Mixture models and factor analysis", "duration_seconds": 4496.7, "video_size_bytes": 1210773505, "topics": "Mixtures of Gaussians; text clustering; factor analysis; covariance restrictions; EM for factor analysis"},
+    {"number": 14, "title": "Factor analysis and principal components", "duration_seconds": 4839.333333, "video_size_bytes": 1303031956, "topics": "Factor analysis; EM for factor analysis; principal component analysis; dimensionality reduction; face recognition"},
+    {"number": 15, "title": "SVD and independent component analysis", "duration_seconds": 4637.566667, "video_size_bytes": 1248668965, "topics": "Latent semantic indexing; singular value decomposition; independent component analysis; cumulative distribution functions"},
+    {"number": 16, "title": "Markov decision processes", "duration_seconds": 4385.366667, "video_size_bytes": 1180721500, "topics": "Reinforcement-learning applications; Markov decision processes; value and policy functions; value and policy iteration"},
+    {"number": 17, "title": "Continuous-state reinforcement learning", "duration_seconds": 4619.366667, "video_size_bytes": 1243783299, "topics": "Continuous states; discretization and curse of dimensionality; models and simulators; fitted value iteration; optimal policy"},
+    {"number": 18, "title": "LQR and dynamical systems", "duration_seconds": 4597.433333, "video_size_bytes": 1238000747, "topics": "State-action rewards; finite-horizon MDPs; dynamical systems; linear quadratic regulation; Riccati equation"},
+    {"number": 19, "title": "Kalman filtering and LQG", "duration_seconds": 4554.6, "video_size_bytes": 1226387910, "topics": "Debugging reinforcement learning; LQR; differential dynamic programming; Kalman filter; linear quadratic Gaussian control"},
+    {"number": 20, "title": "POMDPs and policy search", "duration_seconds": 4599.366667, "video_size_bytes": 1238357993, "topics": "Partially observable MDPs; policy search; REINFORCE; PEGASUS; reinforcement-learning applications"}
+  ]
+}

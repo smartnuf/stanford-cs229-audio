@@ -1,0 +1,52 @@
+# Local environments and configuration
+.env
+.env.*
+!.env.example
+*.local
+*.cookie
+*.cookies
+cookies.txt
+netrc
+.netrc
+
+# Credentials and keys
+*.pem
+*.key
+*.p12
+*.pfx
+ia.ini
+.config/internetarchive/
+
+# Python and test output
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Staging, caches, and generated scratch space
+staging/
+build/
+dist/
+tmp/
+temp/
+*.tmp
+*.part
+
+# Media and transport archives must never be committed
+*.m4a
+*.mp4
+*.m4v
+*.mov
+*.zip
+*.tar
+*.tar.gz
+*.tar.xz

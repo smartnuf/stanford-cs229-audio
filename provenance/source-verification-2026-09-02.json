@@ -1,0 +1,27 @@
+{
+  "verified_at": "2026-09-02T07:10:00Z",
+  "scope": {
+    "video_sources": 20,
+    "html_transcripts": 20,
+    "pdf_transcripts": 20
+  },
+  "result": "pass",
+  "video": {
+    "all_ffprobe_success": true,
+    "all_expected_sizes_match": true,
+    "video_codec": "h264 Main",
+    "audio_codec": "aac LC",
+    "audio_sample_rate_hz": 48000,
+    "audio_channels": 2,
+    "nominal_audio_bit_rate_bps": 157375,
+    "total_video_size_bytes": 24379213192
+  },
+  "transcripts": {
+    "all_html_http_status": 200,
+    "all_pdf_http_status": 200
+  },
+  "limitations": [
+    "Remote files were probed for container and stream metadata but were not downloaded in full or SHA-256 hashed.",
+    "Audio enclosure sizes can only be recorded after the M4A files are built."
+  ]
+}

@@ -1,0 +1,1518 @@
+{
+  "schema_version": 1,
+  "milestone": 0,
+  "result": "pass",
+  "findings": [],
+  "starting_inventory": [
+    {
+      "filename": "andrew-ng-cs229-audio-reconstruction-2026-09-02.zip",
+      "size_bytes": 242211,
+      "sha256": "a0556516156606fc68c5ff5dbf57ad1cbe203a1384ec68ec28a132bd24eeb40f"
+    },
+    {
+      "filename": "cs229-audio-preservation-part-1-of-5-lectures-01-04.zip",
+      "size_bytes": 347389985,
+      "sha256": "1df4e9be94a488e7cc43979332e286bdcbd0aaa25b84ddfed158b8e5d327fc2e"
+    },
+    {
+      "filename": "cs229-audio-preservation-part-2-of-5-lectures-05-08.zip",
+      "size_bytes": 359523283,
+      "sha256": "95af434cbea1f8cadd22e8e99e6c28d09c35f52c89c0e36574ae3a9ada3fcbb9"
+    },
+    {
+      "filename": "cs229-audio-preservation-part-3-of-5-lectures-09-12.zip",
+      "size_bytes": 362167492,
+      "sha256": "33cb0f4371f7b3c7ae338726d9050c687cfa2c6e5afaa87162da82a2f3afb104"
+    },
+    {
+      "filename": "cs229-audio-preservation-part-4-of-5-lectures-13-16.zip",
+      "size_bytes": 364629160,
+      "sha256": "7bda7107e884a4bc496249f830f61bb15612355653df0b0c747e0cf898eb1c4c"
+    },
+    {
+      "filename": "cs229-audio-preservation-part-5-of-5-lectures-17-20.zip",
+      "size_bytes": 364863090,
+      "sha256": "f9a38ba8ffb5ffeac3e98aaeb5bc971ef162c6aec2d29a4f760df0d9516b47f9"
+    },
+    {
+      "filename": "feed-ownership-and-restoration.md",
+      "size_bytes": 5083,
+      "sha256": "bbf750fe2d55b19e042de9f89e9936e637431ffc109493b69b05aa19ef8fbdd7"
+    },
+    {
+      "filename": "stanford-restoration-request.md",
+      "size_bytes": 2652,
+      "sha256": "da8cede48c8739660f6f1a1bba3600e1db4f258153c4d3ad3fdb703f5dfc695b"
+    }
+  ],
+  "archives": [
+    {
+      "filename": "andrew-ng-cs229-audio-reconstruction-2026-09-02.zip",
+      "integrity": "pass",
+      "first_bad_member": null,
+      "members": [
+        {
+          "name": "research/",
+          "size_bytes": 0,
+          "crc32": "00000000"
+        },
+        {
+          "name": "research/feed-ownership-and-restoration.md",
+          "size_bytes": 5083,
+          "crc32": "72c67636"
+        },
+        {
+          "name": "data/",
+          "size_bytes": 0,
+          "crc32": "00000000"
+        },
+        {
+          "name": "data/apple-itunes-enclosures.json",
+          "size_bytes": 9701,
+          "crc32": "b3d2a16f"
+        },
+        {
+          "name": "data/lectures.json",
+          "size_bytes": 5622,
+          "crc32": "45a2c815"
+        },
+        {
+          "name": "data/verification-2026-09-02.json",
+          "size_bytes": 764,
+          "crc32": "2f568480"
+        },
+        {
+          "name": "data/source-map.csv",
+          "size_bytes": 6151,
+          "crc32": "203aaf71"
+        },
+        {
+          "name": "tests/",
+          "size_bytes": 0,
+          "crc32": "00000000"
+        },
+        {
+          "name": "tests/test_reconstruction.py",
+          "size_bytes": 5191,
+          "crc32": "59c78809"
+        },
+        {
+          "name": "LICENSE-MEDIA.md",
+          "size_bytes": 567,
+          "crc32": "8e6f14ee"
+        },
+        {
+          "name": "scripts/",
+          "size_bytes": 0,
+          "crc32": "00000000"
+        },
+        {
+          "name": "scripts/generate_cover.py",
+          "size_bytes": 2127,
+          "crc32": "4d061e24"
+        },
+        {
+          "name": "scripts/cs229_reconstruct.py",
+          "size_bytes": 23001,
+          "crc32": "6e574a5d"
+        },
+        {
+          "name": "README.md",
+          "size_bytes": 6754,
+          "crc32": "d8737b98"
+        },
+        {
+          "name": "contact/",
+          "size_bytes": 0,
+          "crc32": "00000000"
+        },
+        {
+          "name": "contact/castbox-email.md",
+          "size_bytes": 1192,
+          "crc32": "afb5dcfe"
+        },
+        {
+          "name": "contact/stanford-restoration-request.md",
+          "size_bytes": 2652,
+          "crc32": "7485ab2e"
+        },
+        {
+          "name": "assets/",
+          "size_bytes": 0,
+          "crc32": "00000000"
+        },
+        {
+          "name": "assets/cover.jpg",
+          "size_bytes": 310157,
+          "crc32": "ecb371c1"
+        },
+        {
+          "name": "feeds/",
+          "size_bytes": 0,
+          "crc32": "00000000"
+        },
+        {
+          "name": "feeds/video-feed.example.xml",
+          "size_bytes": 24808,
+          "crc32": "0928e218"
+        },
+        {
+          "name": "LICENSE-CODE",
+          "size_bytes": 1072,
+          "crc32": "fa5ec32c"
+        },
+        {
+          "name": "NOTICE.md",
+          "size_bytes": 1273,
+          "crc32": "f5c5b7be"
+        }
+      ]
+    },
+    {
+      "filename": "cs229-audio-preservation-part-1-of-5-lectures-01-04.zip",
+      "integrity": "pass",
+      "first_bad_member": null,
+      "members": [
+        {
+          "name": "README.md",
+          "size_bytes": 901,
+          "crc32": "40de72be"
+        },
+        {
+          "name": "NOTICE.md",
+          "size_bytes": 1273,
+          "crc32": "f5c5b7be"
+        },
+        {
+          "name": "LICENSE-MEDIA.md",
+          "size_bytes": 567,
+          "crc32": "8e6f14ee"
+        },
+        {
+          "name": "cover.jpg",
+          "size_bytes": 310157,
+          "crc32": "ecb371c1"
+        },
+        {
+          "name": "source-map.csv",
+          "size_bytes": 6151,
+          "crc32": "203aaf71"
+        },
+        {
+          "name": "playlist.m3u8",
+          "size_bytes": 464,
+          "crc32": "6e92ab04"
+        },
+        {
+          "name": "media-validation.json",
+          "size_bytes": 7137,
+          "crc32": "93761c2e"
+        },
+        {
+          "name": "SHA256SUMS",
+          "size_bytes": 1720,
+          "crc32": "47cc707c"
+        },
+        {
+          "name": "lecture01.m4a",
+          "size_bytes": 81818286,
+          "crc32": "7955324e"
+        },
+        {
+          "name": "lecture02.m4a",
+          "size_bytes": 90871014,
+          "crc32": "457ba59a"
+        },
+        {
+          "name": "lecture03.m4a",
+          "size_bytes": 87256833,
+          "crc32": "f9b47647"
+        },
+        {
+          "name": "lecture04.m4a",
+          "size_bytes": 87113618,
+          "crc32": "d29a5348"
+        }
+      ]
+    },
+    {
+      "filename": "cs229-audio-preservation-part-2-of-5-lectures-05-08.zip",
+      "integrity": "pass",
+      "first_bad_member": null,
+      "members": [
+        {
+          "name": "lecture05.m4a",
+          "size_bytes": 89982914,
+          "crc32": "db541188"
+        },
+        {
+          "name": "lecture06.m4a",
+          "size_bytes": 87168405,
+          "crc32": "c7d4b764"
+        },
+        {
+          "name": "lecture07.m4a",
+          "size_bytes": 90249836,
+          "crc32": "36380234"
+        },
+        {
+          "name": "lecture08.m4a",
+          "size_bytes": 92121490,
+          "crc32": "cdd631ca"
+        }
+      ]
+    },
+    {
+      "filename": "cs229-audio-preservation-part-3-of-5-lectures-09-12.zip",
+      "integrity": "pass",
+      "first_bad_member": null,
+      "members": [
+        {
+          "name": "lecture09.m4a",
+          "size_bytes": 88543344,
+          "crc32": "7e7de4f0"
+        },
+        {
+          "name": "lecture10.m4a",
+          "size_bytes": 86909446,
+          "crc32": "abe246d8"
+        },
+        {
+          "name": "lecture11.m4a",
+          "size_bytes": 98091614,
+          "crc32": "ffac2087"
+        },
+        {
+          "name": "lecture12.m4a",
+          "size_bytes": 88622450,
+          "crc32": "5d04a3fd"
+        }
+      ]
+    },
+    {
+      "filename": "cs229-audio-preservation-part-4-of-5-lectures-13-16.zip",
+      "integrity": "pass",
+      "first_bad_member": null,
+      "members": [
+        {
+          "name": "lecture13.m4a",
+          "size_bytes": 89309320,
+          "crc32": "d1f94ca6"
+        },
+        {
+          "name": "lecture14.m4a",
+          "size_bytes": 96114228,
+          "crc32": "853432c1"
+        },
+        {
+          "name": "lecture15.m4a",
+          "size_bytes": 92106851,
+          "crc32": "f0fc43c7"
+        },
+        {
+          "name": "lecture16.m4a",
+          "size_bytes": 87098123,
+          "crc32": "eac4e838"
+        }
+      ]
+    },
+    {
+      "filename": "cs229-audio-preservation-part-5-of-5-lectures-17-20.zip",
+      "integrity": "pass",
+      "first_bad_member": null,
+      "members": [
+        {
+          "name": "lecture17.m4a",
+          "size_bytes": 91745360,
+          "crc32": "51df74b6"
+        },
+        {
+          "name": "lecture18.m4a",
+          "size_bytes": 91309941,
+          "crc32": "8e3f98c6"
+        },
+        {
+          "name": "lecture19.m4a",
+          "size_bytes": 90459081,
+          "crc32": "e52b2bab"
+        },
+        {
+          "name": "lecture20.m4a",
+          "size_bytes": 91348070,
+          "crc32": "3f1d9adf"
+        }
+      ]
+    }
+  ],
+  "extraction": {
+    "file_count": 46,
+    "files": [
+      {
+        "path": "part-1/LICENSE-MEDIA.md",
+        "size_bytes": 567
+      },
+      {
+        "path": "part-1/NOTICE.md",
+        "size_bytes": 1273
+      },
+      {
+        "path": "part-1/README.md",
+        "size_bytes": 901
+      },
+      {
+        "path": "part-1/SHA256SUMS",
+        "size_bytes": 1720
+      },
+      {
+        "path": "part-1/cover.jpg",
+        "size_bytes": 310157
+      },
+      {
+        "path": "part-1/lecture01.m4a",
+        "size_bytes": 81818286
+      },
+      {
+        "path": "part-1/lecture02.m4a",
+        "size_bytes": 90871014
+      },
+      {
+        "path": "part-1/lecture03.m4a",
+        "size_bytes": 87256833
+      },
+      {
+        "path": "part-1/lecture04.m4a",
+        "size_bytes": 87113618
+      },
+      {
+        "path": "part-1/media-validation.json",
+        "size_bytes": 7137
+      },
+      {
+        "path": "part-1/playlist.m3u8",
+        "size_bytes": 464
+      },
+      {
+        "path": "part-1/source-map.csv",
+        "size_bytes": 6151
+      },
+      {
+        "path": "part-2/lecture05.m4a",
+        "size_bytes": 89982914
+      },
+      {
+        "path": "part-2/lecture06.m4a",
+        "size_bytes": 87168405
+      },
+      {
+        "path": "part-2/lecture07.m4a",
+        "size_bytes": 90249836
+      },
+      {
+        "path": "part-2/lecture08.m4a",
+        "size_bytes": 92121490
+      },
+      {
+        "path": "part-3/lecture09.m4a",
+        "size_bytes": 88543344
+      },
+      {
+        "path": "part-3/lecture10.m4a",
+        "size_bytes": 86909446
+      },
+      {
+        "path": "part-3/lecture11.m4a",
+        "size_bytes": 98091614
+      },
+      {
+        "path": "part-3/lecture12.m4a",
+        "size_bytes": 88622450
+      },
+      {
+        "path": "part-4/lecture13.m4a",
+        "size_bytes": 89309320
+      },
+      {
+        "path": "part-4/lecture14.m4a",
+        "size_bytes": 96114228
+      },
+      {
+        "path": "part-4/lecture15.m4a",
+        "size_bytes": 92106851
+      },
+      {
+        "path": "part-4/lecture16.m4a",
+        "size_bytes": 87098123
+      },
+      {
+        "path": "part-5/lecture17.m4a",
+        "size_bytes": 91745360
+      },
+      {
+        "path": "part-5/lecture18.m4a",
+        "size_bytes": 91309941
+      },
+      {
+        "path": "part-5/lecture19.m4a",
+        "size_bytes": 90459081
+      },
+      {
+        "path": "part-5/lecture20.m4a",
+        "size_bytes": 91348070
+      },
+      {
+        "path": "reconstruction/LICENSE-CODE",
+        "size_bytes": 1072
+      },
+      {
+        "path": "reconstruction/LICENSE-MEDIA.md",
+        "size_bytes": 567
+      },
+      {
+        "path": "reconstruction/NOTICE.md",
+        "size_bytes": 1273
+      },
+      {
+        "path": "reconstruction/README.md",
+        "size_bytes": 6754
+      },
+      {
+        "path": "reconstruction/assets/cover.jpg",
+        "size_bytes": 310157
+      },
+      {
+        "path": "reconstruction/contact/castbox-email.md",
+        "size_bytes": 1192
+      },
+      {
+        "path": "reconstruction/contact/stanford-restoration-request.md",
+        "size_bytes": 2652
+      },
+      {
+        "path": "reconstruction/data/apple-itunes-enclosures.json",
+        "size_bytes": 9701
+      },
+      {
+        "path": "reconstruction/data/lectures.json",
+        "size_bytes": 5622
+      },
+      {
+        "path": "reconstruction/data/source-map.csv",
+        "size_bytes": 6151
+      },
+      {
+        "path": "reconstruction/data/verification-2026-09-02.json",
+        "size_bytes": 764
+      },
+      {
+        "path": "reconstruction/feeds/video-feed.example.xml",
+        "size_bytes": 24808
+      },
+      {
+        "path": "reconstruction/research/feed-ownership-and-restoration.md",
+        "size_bytes": 5083
+      },
+      {
+        "path": "reconstruction/scripts/__pycache__/cs229_reconstruct.cpython-312.pyc",
+        "size_bytes": 36604
+      },
+      {
+        "path": "reconstruction/scripts/cs229_reconstruct.py",
+        "size_bytes": 23001
+      },
+      {
+        "path": "reconstruction/scripts/generate_cover.py",
+        "size_bytes": 2127
+      },
+      {
+        "path": "reconstruction/tests/__pycache__/test_reconstruction.cpython-312.pyc",
+        "size_bytes": 9781
+      },
+      {
+        "path": "reconstruction/tests/test_reconstruction.py",
+        "size_bytes": 5191
+      }
+    ],
+    "duplicate_basenames": [
+      "LICENSE-MEDIA.md",
+      "NOTICE.md",
+      "README.md",
+      "cover.jpg",
+      "source-map.csv"
+    ],
+    "zip_file_member_count": 44,
+    "missing_archive_members": [],
+    "size_mismatches": [],
+    "generated_after_extraction": [
+      "reconstruction/scripts/__pycache__/cs229_reconstruct.cpython-312.pyc",
+      "reconstruction/tests/__pycache__/test_reconstruction.cpython-312.pyc"
+    ]
+  },
+  "canonical_media": {
+    "directory": "staging/media",
+    "expected_names": [
+      "lecture01.m4a",
+      "lecture02.m4a",
+      "lecture03.m4a",
+      "lecture04.m4a",
+      "lecture05.m4a",
+      "lecture06.m4a",
+      "lecture07.m4a",
+      "lecture08.m4a",
+      "lecture09.m4a",
+      "lecture10.m4a",
+      "lecture11.m4a",
+      "lecture12.m4a",
+      "lecture13.m4a",
+      "lecture14.m4a",
+      "lecture15.m4a",
+      "lecture16.m4a",
+      "lecture17.m4a",
+      "lecture18.m4a",
+      "lecture19.m4a",
+      "lecture20.m4a"
+    ],
+    "actual_names": [
+      "lecture01.m4a",
+      "lecture02.m4a",
+      "lecture03.m4a",
+      "lecture04.m4a",
+      "lecture05.m4a",
+      "lecture06.m4a",
+      "lecture07.m4a",
+      "lecture08.m4a",
+      "lecture09.m4a",
+      "lecture10.m4a",
+      "lecture11.m4a",
+      "lecture12.m4a",
+      "lecture13.m4a",
+      "lecture14.m4a",
+      "lecture15.m4a",
+      "lecture16.m4a",
+      "lecture17.m4a",
+      "lecture18.m4a",
+      "lecture19.m4a",
+      "lecture20.m4a"
+    ],
+    "hidden_or_extra": [],
+    "file_count": 20,
+    "total_size_bytes": 1798240224,
+    "records": [
+      {
+        "filename": "lecture01.m4a",
+        "size_bytes": 81818286,
+        "sha256": "25b63699a4bae0b873cf16b1349be92006973a41df40a941c94529c4bdd4dc6d",
+        "duration_seconds": 4119.533333,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4119.533333",
+          "size": "81818286"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      },
+      {
+        "filename": "lecture02.m4a",
+        "size_bytes": 90871014,
+        "sha256": "c4004d64cf7b459408ff7eba1fe080f4bb9f6bf69c22333d316504ae0180726b",
+        "duration_seconds": 4575.333333,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4575.333333",
+          "size": "90871014"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      },
+      {
+        "filename": "lecture03.m4a",
+        "size_bytes": 87256833,
+        "sha256": "822f7dece15f19cd6acb691eb04de56060e398b5b0a743ee905bf90bf6f17fda",
+        "duration_seconds": 4393.366667,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4393.366667",
+          "size": "87256833"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      },
+      {
+        "filename": "lecture04.m4a",
+        "size_bytes": 87113618,
+        "sha256": "b4c3766fc48c4735e4c49fe27f6065569670cd880d9aef14fce13c73d36a37b4",
+        "duration_seconds": 4386.166667,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4386.166667",
+          "size": "87113618"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      },
+      {
+        "filename": "lecture05.m4a",
+        "size_bytes": 89982914,
+        "sha256": "3829a2ef897842a8e2170cdd0f945f14ce7463e77990cdb2cf6a39e4944e62f3",
+        "duration_seconds": 4530.633333,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4530.633333",
+          "size": "89982914"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      },
+      {
+        "filename": "lecture06.m4a",
+        "size_bytes": 87168405,
+        "sha256": "6e166fac877e2448a771344bcfa5f00846a71656fefd04873ae059c75dc7e2e6",
+        "duration_seconds": 4388.9,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4388.900000",
+          "size": "87168405"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      },
+      {
+        "filename": "lecture07.m4a",
+        "size_bytes": 90249836,
+        "sha256": "5a376761f179918c7ec33a634ef45ff1016f1f3790d8ef7e0ffe86c9a81b57d4",
+        "duration_seconds": 4544.066667,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4544.066667",
+          "size": "90249836"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      },
+      {
+        "filename": "lecture08.m4a",
+        "size_bytes": 92121490,
+        "sha256": "ebde64c87c60a90abe1da4ca64e883b4fee760a5c9986abf21a221c0dd5d06c1",
+        "duration_seconds": 4638.3,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4638.300000",
+          "size": "92121490"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      },
+      {
+        "filename": "lecture09.m4a",
+        "size_bytes": 88543344,
+        "sha256": "93cce9a6c0e086782e5d5bfaadd39bc1d2f1c7260fbb086ada4901b392bdc755",
+        "duration_seconds": 4458.133333,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4458.133333",
+          "size": "88543344"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      },
+      {
+        "filename": "lecture10.m4a",
+        "size_bytes": 86909446,
+        "sha256": "5be92253112fa970f0e1ebf1ac070c6c9c5a214bfc60eea1e731c6229b9a1338",
+        "duration_seconds": 4375.866667,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4375.866667",
+          "size": "86909446"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      },
+      {
+        "filename": "lecture11.m4a",
+        "size_bytes": 98091614,
+        "sha256": "b5266efe4a5dd7f13908d3276f9284bb7aba6b58f76716d16d823177293b6a97",
+        "duration_seconds": 4938.9,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4938.900000",
+          "size": "98091614"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      },
+      {
+        "filename": "lecture12.m4a",
+        "size_bytes": 88622450,
+        "sha256": "6c19526d3e36023bead0f506003e2f6ed336f763acb852ae6c5ecef377606cbe",
+        "duration_seconds": 4462.133333,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4462.133333",
+          "size": "88622450"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      },
+      {
+        "filename": "lecture13.m4a",
+        "size_bytes": 89309320,
+        "sha256": "ee9f6a2a56ae028508c0528a91718834f7650e8d007108b8f4312679d57acb5f",
+        "duration_seconds": 4496.7,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4496.700000",
+          "size": "89309320"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      },
+      {
+        "filename": "lecture14.m4a",
+        "size_bytes": 96114228,
+        "sha256": "7c5708dc88ff6f459787c8e43d37b912b9f2d0615eb2055e561cc2da53347143",
+        "duration_seconds": 4839.333333,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4839.333333",
+          "size": "96114228"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      },
+      {
+        "filename": "lecture15.m4a",
+        "size_bytes": 92106851,
+        "sha256": "ea199ec53fe6005e6b60cf4fa77c3f80cc1c4a852a3d08c51080422438eb8166",
+        "duration_seconds": 4637.566667,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4637.566667",
+          "size": "92106851"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      },
+      {
+        "filename": "lecture16.m4a",
+        "size_bytes": 87098123,
+        "sha256": "e4af61c8cd67cca6380a56fa71050f9479ab2f39cd31e8ad8ba5c43f62d86983",
+        "duration_seconds": 4385.366667,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4385.366667",
+          "size": "87098123"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      },
+      {
+        "filename": "lecture17.m4a",
+        "size_bytes": 91745360,
+        "sha256": "80e0096a0d29bb8434ce1a2349687035712fe04e6cd5f4f9f2791691b7a832d1",
+        "duration_seconds": 4619.366667,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4619.366667",
+          "size": "91745360"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      },
+      {
+        "filename": "lecture18.m4a",
+        "size_bytes": 91309941,
+        "sha256": "43fccd770c765ab1d1e75be1f9116b236b3987a9d8340465105c14d1c1311d98",
+        "duration_seconds": 4597.433333,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4597.433333",
+          "size": "91309941"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      },
+      {
+        "filename": "lecture19.m4a",
+        "size_bytes": 90459081,
+        "sha256": "c837b3508221353dbb518e2cce67e852ca8a6d30dd590c3dd4af52640b1ac459",
+        "duration_seconds": 4554.6,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4554.600000",
+          "size": "90459081"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      },
+      {
+        "filename": "lecture20.m4a",
+        "size_bytes": 91348070,
+        "sha256": "ee327faf69afc9141d75f2ef4767953197ed3d8690baab04b8ff1101e0505c39",
+        "duration_seconds": 4599.366667,
+        "stream": {
+          "index": 0,
+          "codec_name": "aac",
+          "profile": "LC",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        },
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "duration": "4599.366667",
+          "size": "91348070"
+        },
+        "checks": {
+          "sha256_matches_SHA256SUMS": true,
+          "sha256_matches_media_validation": true,
+          "size_matches_media_validation": true,
+          "duration_matches_media_validation": true,
+          "one_audio_stream": true,
+          "aac_lc": true,
+          "sample_rate_48000": true,
+          "stereo": true,
+          "valid_m4a_container": true,
+          "format_size_matches_file": true
+        },
+        "result": "pass"
+      }
+    ]
+  },
+  "provenance_consistency": {
+    "manifest_lectures": 20,
+    "source_map_rows": 20,
+    "historical_apple_rows": 20,
+    "historical_apple_podcast_id": 384233048,
+    "records": [
+      {
+        "lecture": 1,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      },
+      {
+        "lecture": 2,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      },
+      {
+        "lecture": 3,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      },
+      {
+        "lecture": 4,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      },
+      {
+        "lecture": 5,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      },
+      {
+        "lecture": 6,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      },
+      {
+        "lecture": 7,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      },
+      {
+        "lecture": 8,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      },
+      {
+        "lecture": 9,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      },
+      {
+        "lecture": 10,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      },
+      {
+        "lecture": 11,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      },
+      {
+        "lecture": 12,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      },
+      {
+        "lecture": 13,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      },
+      {
+        "lecture": 14,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      },
+      {
+        "lecture": 15,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      },
+      {
+        "lecture": 16,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      },
+      {
+        "lecture": 17,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      },
+      {
+        "lecture": 18,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      },
+      {
+        "lecture": 19,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      },
+      {
+        "lecture": 20,
+        "manifest_csv_number_match": true,
+        "manifest_csv_title_match": true,
+        "manifest_csv_duration_match": true,
+        "manifest_csv_size_match": true,
+        "stanford_video_url_match": true,
+        "stanford_html_url_match": true,
+        "stanford_pdf_url_match": true,
+        "historical_apple_https": true,
+        "historical_apple_podcast_id_match": true
+      }
+    ],
+    "result": "pass"
+  },
+  "no_reencoding_evidence": {
+    "canonical_files_byte_identical_to_supplied_hashes": true,
+    "reconstruction_command_contains_aac_packet_copy": true,
+    "all_audio_signatures_match_supplied_validation": true,
+    "interpretation": "The staged files are byte-identical to the supplied preservation artifacts; the supplied reconstruction uses FFmpeg stream copy (-c:a copy), and every resulting stream retains the documented AAC-LC/48 kHz/stereo signature. No media-writing command was used during staging."
+  },
+  "failures": []
+}

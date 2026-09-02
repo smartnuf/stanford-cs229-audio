@@ -1,0 +1,88 @@
+{
+  "recovered_at": "2026-09-02",
+  "recovered_from": "https://castbox.fm/channel/Machine-Learning-id1409341",
+  "apple_podcast_id": 384233048,
+  "note": "Historical Apple iTunes U enclosure URLs exposed by the public Castbox player. These preserve provenance but are not the preferred reconstruction sources. Lectures 14 and 17 currently resolve as approximately four-second items in Castbox.",
+  "enclosures": [
+    {
+      "lecture": 1,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic/v4/c8/40/1e/c8401e3b-576c-7a90-bf7c-d5860a7a3e50/ac39781204f8e5b13802447f83e500fbf1b6232cc17938dfe29621bb00157ac5-2556284864.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092487%26episodeName%3D1.%2BMachine%2BLearning%2BLecture%2B1%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    },
+    {
+      "lecture": 2,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic4/v4/10/6e/d3/106ed38d-5b57-2075-19da-1d806d8ae81c/83debf6f01c760ad4ad10505d7ee6cbc9fffbb11d3d2b14502be565ce7020df3-2527473843.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092482%26episodeName%3D2.%2BMachine%2BLearning%2BLecture%2B2%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    },
+    {
+      "lecture": 3,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic6/v4/bb/37/da/bb37da94-e79a-01bb-113b-412721a0b19d/12314786017ac6fc6ee5c22685ecbb5730ac12901b24d7a07b2284a35c2fb45b-2556333758.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092483%26episodeName%3D3.%2BMachine%2BLearning%2BLecture%2B3%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    },
+    {
+      "lecture": 4,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic4/v4/a9/02/45/a90245eb-df42-fddf-7811-7dcf08e84202/a82e51467fceb44acc90b2ac54bffc01257cb95f9c47b11b5b787bc7356f3e59-2526867638.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092486%26episodeName%3D4.%2BMachine%2BLearning%2BLecture%2B4%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    },
+    {
+      "lecture": 5,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic4/v4/da/ac/01/daac01b6-2a8d-050b-eb51-566f63520990/b48d6f7f7396d388b455a897a2221475391336bca84fed84199fee50945e1a31-2556202804.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092481%26episodeName%3D5.%2BMachine%2BLearning%2BLecture%2B5%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    },
+    {
+      "lecture": 6,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic/v4/db/85/cd/db85cdd2-1be4-5b1b-5a4f-fea0b1ace54a/e46707adef506a282bc1c3cd29fd3c60762ef508dee94fdc5639d44a0dbb892c-2526114234.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092485%26episodeName%3D6.%2BMachine%2BLearning%2BLecture%2B6%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    },
+    {
+      "lecture": 7,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic4/v4/a6/26/98/a6269800-fe3f-086a-6f17-a0b4a151e753/a58b3228e50e655a83488720f468ebb28132eded50abf7c12001c24e52bd9538-2556120819.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092488%26episodeName%3D7.%2BMachine%2BLearning%2BLecture%2B7%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    },
+    {
+      "lecture": 8,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic6/v4/6b/b8/2d/6bb82d74-228a-9e6f-8179-0da7a2d06501/77666284ea88b1dd2fb23950338c017cfa2393f65aaf04a47740a8dfee3452e0-2534467606.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092479%26episodeName%3D8.%2BMachine%2BLearning%2BLecture%2B8%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    },
+    {
+      "lecture": 9,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic/v4/a9/e8/bf/a9e8bf86-57e6-1395-b002-4ca87e39a63a/04fd897277991fa4a7f523561cb0902fbf7706187880e42b84c6a3304975b9e6-2534484158.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092489%26episodeName%3D9.%2BMachine%2BLearning%2BLecture%2B9%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    },
+    {
+      "lecture": 10,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic/v4/5b/32/99/5b32998c-07ce-4d8b-9755-8a2e48f7fd46/e59a7832562fef64588d9c4f38a22cb948bd67b2bc3cfc6f788b8d55d01ec382-2556284840.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092476%26episodeName%3D10.%2BMachine%2BLearning%2BLecture%2B10%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    },
+    {
+      "lecture": 11,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic/v4/a6/ed/8d/a6ed8d26-9d12-fd30-c841-09392a12be0b/dbe8e5f30eabf529a89ca4664fa51eab53c71e25dfcb523bdc2ac1f4105b83db-2526114214.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092491%26episodeName%3D11.%2BMachine%2BLearning%2BLecture%2B11%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    },
+    {
+      "lecture": 12,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic/v4/22/79/96/22799663-d6b3-3e94-3cce-b49c1adba493/bb3262fea70603124b2a30c28268e2be69519c035695735c0180dbaf58a68766-2556431790.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092494%26episodeName%3D12.%2BMachine%2BLearning%2BLecture%2B12%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    },
+    {
+      "lecture": 13,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic/v4/4b/2c/ea/4b2cea9b-f1f7-86e5-d1fd-9fa998afd17a/d48b0f6cb3d35710c2ba6778705ab68a044866398dedac8c95aba74f8e0b423a-2526867610.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092480%26episodeName%3D13.%2BMachine%2BLearning%2BLecture%2B13%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    },
+    {
+      "lecture": 14,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic4/v4/af/f5/09/aff50976-cd37-ee02-9bac-e16ce2ec7e5f/98c111400838cbd3f7efb1d27459f521604fd07b43b4cc15d4dc1a65f39ddb0f-2534484142.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092484%26episodeName%3D14.%2BMachine%2BLearning%2BLecture%2B14%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    },
+    {
+      "lecture": 15,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic4/v4/38/2f/44/382f448b-eab3-8a8a-d33f-49def81c5ab4/8bb56d80fed16caa1dabca38a9a23a2abee7b056385dbb51e688bf789151b1de-2556268202.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092478%26episodeName%3D15.%2BMachine%2BLearning%2BLecture%2B15%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    },
+    {
+      "lecture": 16,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic/v4/3e/08/b0/3e08b090-c24e-fcc7-239d-cc6961a653a2/36ce4640396d0e3c0faa1bd34fa8c88104403bd750872236e8cf0fec854cc969-2526507304.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092490%26episodeName%3D16.%2BMachine%2BLearning%2BLecture%2B16%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    },
+    {
+      "lecture": 17,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic/v4/36/ad/9f/36ad9f17-7bdd-a1e6-3c40-b770f0a66b59/dafecbd7525a16f2fe82e4f54144099494c10f8d2d5c40ac2b46a4d7034b2eeb-2556202768.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092492%26episodeName%3D17.%2BMachine%2BLearning%2BLecture%2B17%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    },
+    {
+      "lecture": 18,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic/v4/10/4e/e8/104ee83f-9668-da85-d3bf-1e15058b1642/7d75be9f185857ba14f7314d6114c5d69c8a3130d1d2d45c1165b4fd13b4decf-2526114195.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092493%26episodeName%3D18.%2BMachine%2BLearning%2BLecture%2B18%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    },
+    {
+      "lecture": 19,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic4/v4/00/e1/6e/00e16ea5-1969-6c81-d7aa-f760515366bd/40da658f692bc5028657db71e61d208e60870200ced40a3a40952ce7cdff5d0e-2526507283.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092475%26episodeName%3D19.%2BMachine%2BLearning%2BLecture%2B19%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    },
+    {
+      "lecture": 20,
+      "media": "https://itunesu-assets.itunes.apple.com/itunes-assets/CobaltPublic/v4/13/1b/a0/131ba0fa-2f4f-759e-0270-645596ce596a/e38e71579f483178e7b25cdecb2f5dcd11acc493fe6629e39fbc0cd2942c43c2-2556333718.m4v?a=v%3D3%26artistId%3D1280771285%26podcastId%3D384233048%26podcastName%3DMachine%2BLearning%26episodeId%3D1000085092477%26episodeName%3D20.%2BMachine%2BLearning%2BLecture%2B20%26episodeKind%3Dmovie%26pageLocation%3Ditc"
+    }
+  ]
+}

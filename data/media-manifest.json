@@ -1,0 +1,268 @@
+{
+  "validated_at": "2026-09-02T09:01:49.318838+00:00",
+  "result": "pass",
+  "media_files": 20,
+  "total_size_bytes": 1798240224,
+  "records": [
+    {
+      "lecture": 1,
+      "filename": "lecture01.m4a",
+      "size_bytes": 81818286,
+      "duration_seconds": 4119.533333,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "25b63699a4bae0b873cf16b1349be92006973a41df40a941c94529c4bdd4dc6d"
+    },
+    {
+      "lecture": 2,
+      "filename": "lecture02.m4a",
+      "size_bytes": 90871014,
+      "duration_seconds": 4575.333333,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "c4004d64cf7b459408ff7eba1fe080f4bb9f6bf69c22333d316504ae0180726b"
+    },
+    {
+      "lecture": 3,
+      "filename": "lecture03.m4a",
+      "size_bytes": 87256833,
+      "duration_seconds": 4393.366667,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "822f7dece15f19cd6acb691eb04de56060e398b5b0a743ee905bf90bf6f17fda"
+    },
+    {
+      "lecture": 4,
+      "filename": "lecture04.m4a",
+      "size_bytes": 87113618,
+      "duration_seconds": 4386.166667,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "b4c3766fc48c4735e4c49fe27f6065569670cd880d9aef14fce13c73d36a37b4"
+    },
+    {
+      "lecture": 5,
+      "filename": "lecture05.m4a",
+      "size_bytes": 89982914,
+      "duration_seconds": 4530.633333,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "3829a2ef897842a8e2170cdd0f945f14ce7463e77990cdb2cf6a39e4944e62f3"
+    },
+    {
+      "lecture": 6,
+      "filename": "lecture06.m4a",
+      "size_bytes": 87168405,
+      "duration_seconds": 4388.9,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "6e166fac877e2448a771344bcfa5f00846a71656fefd04873ae059c75dc7e2e6"
+    },
+    {
+      "lecture": 7,
+      "filename": "lecture07.m4a",
+      "size_bytes": 90249836,
+      "duration_seconds": 4544.066667,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "5a376761f179918c7ec33a634ef45ff1016f1f3790d8ef7e0ffe86c9a81b57d4"
+    },
+    {
+      "lecture": 8,
+      "filename": "lecture08.m4a",
+      "size_bytes": 92121490,
+      "duration_seconds": 4638.3,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "ebde64c87c60a90abe1da4ca64e883b4fee760a5c9986abf21a221c0dd5d06c1"
+    },
+    {
+      "lecture": 9,
+      "filename": "lecture09.m4a",
+      "size_bytes": 88543344,
+      "duration_seconds": 4458.133333,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "93cce9a6c0e086782e5d5bfaadd39bc1d2f1c7260fbb086ada4901b392bdc755"
+    },
+    {
+      "lecture": 10,
+      "filename": "lecture10.m4a",
+      "size_bytes": 86909446,
+      "duration_seconds": 4375.866667,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "5be92253112fa970f0e1ebf1ac070c6c9c5a214bfc60eea1e731c6229b9a1338"
+    },
+    {
+      "lecture": 11,
+      "filename": "lecture11.m4a",
+      "size_bytes": 98091614,
+      "duration_seconds": 4938.9,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "b5266efe4a5dd7f13908d3276f9284bb7aba6b58f76716d16d823177293b6a97"
+    },
+    {
+      "lecture": 12,
+      "filename": "lecture12.m4a",
+      "size_bytes": 88622450,
+      "duration_seconds": 4462.133333,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "6c19526d3e36023bead0f506003e2f6ed336f763acb852ae6c5ecef377606cbe"
+    },
+    {
+      "lecture": 13,
+      "filename": "lecture13.m4a",
+      "size_bytes": 89309320,
+      "duration_seconds": 4496.7,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "ee9f6a2a56ae028508c0528a91718834f7650e8d007108b8f4312679d57acb5f"
+    },
+    {
+      "lecture": 14,
+      "filename": "lecture14.m4a",
+      "size_bytes": 96114228,
+      "duration_seconds": 4839.333333,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "7c5708dc88ff6f459787c8e43d37b912b9f2d0615eb2055e561cc2da53347143"
+    },
+    {
+      "lecture": 15,
+      "filename": "lecture15.m4a",
+      "size_bytes": 92106851,
+      "duration_seconds": 4637.566667,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "ea199ec53fe6005e6b60cf4fa77c3f80cc1c4a852a3d08c51080422438eb8166"
+    },
+    {
+      "lecture": 16,
+      "filename": "lecture16.m4a",
+      "size_bytes": 87098123,
+      "duration_seconds": 4385.366667,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "e4af61c8cd67cca6380a56fa71050f9479ab2f39cd31e8ad8ba5c43f62d86983"
+    },
+    {
+      "lecture": 17,
+      "filename": "lecture17.m4a",
+      "size_bytes": 91745360,
+      "duration_seconds": 4619.366667,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "80e0096a0d29bb8434ce1a2349687035712fe04e6cd5f4f9f2791691b7a832d1"
+    },
+    {
+      "lecture": 18,
+      "filename": "lecture18.m4a",
+      "size_bytes": 91309941,
+      "duration_seconds": 4597.433333,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "43fccd770c765ab1d1e75be1f9116b236b3987a9d8340465105c14d1c1311d98"
+    },
+    {
+      "lecture": 19,
+      "filename": "lecture19.m4a",
+      "size_bytes": 90459081,
+      "duration_seconds": 4554.6,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "c837b3508221353dbb518e2cce67e852ca8a6d30dd590c3dd4af52640b1ac459"
+    },
+    {
+      "lecture": 20,
+      "filename": "lecture20.m4a",
+      "size_bytes": 91348070,
+      "duration_seconds": 4599.366667,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sample_rate_hz": 48000,
+        "channels": 2
+      },
+      "sha256": "ee327faf69afc9141d75f2ef4767953197ed3d8690baab04b8ff1101e0505c39"
+    }
+  ]
+}
