@@ -69,6 +69,29 @@ The v1.0 execution was explicitly authorized on 2026-09-02 for public repository
 not authorize overwriting/deleting remote objects, changing bytes or identities,
 publishing Zenodo, sending correspondence, or directory submission.
 
+## Bounded engineering review
+
+For tooling, feed-generator, site or CI work, identify the work item and use a
+purpose-specific branch from the current default branch. Routine preservation
+or provenance-only updates do not require code review solely because they use
+a PR; the preservation invariants and human gates above always apply.
+
+Automatic Codex review is not assumed. After implementation, affected validation
+and self-review of the complete diff, push a genuine candidate HEAD and ensure
+its PR is open and ready for review. The authoring agent should post
+`@codex review` itself when it has comment permission; otherwise report that
+permission gap. This request means the author considers this exact commit ready
+for independent integration review. Do not request review for routine
+intermediate pushes.
+
+Record the candidate SHA and wait for completed review of that exact commit.
+Explicitly disposition material findings with fixes or evidence-backed reasons.
+After material changes, rerun affected validation, self-review, push the new
+candidate and request fresh `@codex review`; an older review is not evidence for
+the new HEAD. Avoid duplicate requests while review is running. A clean review
+does not replace tests, CI, domain validation or owner-reserved approval. Merge
+only with the repository's required evidence and owner/authorised merge authority.
+
 ## Required validation
 
 Use Python 3.10 or newer:
