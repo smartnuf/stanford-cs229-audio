@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import subprocess
 import sys
 from pathlib import Path
@@ -20,9 +21,27 @@ def git(*arguments: str, input_bytes: bytes | None = None) -> bytes:
     ).stdout
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--revision", metavar="REV",
+        help="audit this commit and all ancestors; default: every local ref",
+    )
+    args = parser.parse_args(argv)
+    try:
+        if git("rev-parse", "--is-shallow-repository").strip() == b"true":
+            print("FAIL: full Git history is required (shallow repository)", file=sys.stderr)
+            return 1
+        revisions = ("--all",)
+        if args.revision is not None:
+            commit = git("rev-parse", "--verify", "--end-of-options",
+                         args.revision + "^{commit}").decode().strip()
+            revisions = (commit,)
+    except subprocess.CalledProcessError:
+        print("FAIL: audit revision must resolve to an available commit", file=sys.stderr)
+        return 1
     failures: list[str] = []
-    objects = git("rev-list", "--objects", "--all").decode().splitlines()
+    objects = git("rev-list", "--objects", *revisions).decode().splitlines()
     blobs = 0
     for row in objects:
         object_id, _, path_text = row.partition(" ")
@@ -42,7 +61,7 @@ def main() -> int:
         if any(pattern.search(content) for pattern in SECRET_PATTERNS):
             failures.append(f"credential signature in blob: {path}")
 
-    emails = set(git("log", "--format=%ae%n%ce", "--all").decode().splitlines())
+    emails = set(git("log", "--format=%ae%n%ce", *revisions).decode().splitlines())
     for email in emails:
         if email and not email.endswith(ALLOWED_EMAIL_SUFFIXES):
             failures.append("unapproved public author/committer email in reachable history")

@@ -206,3 +206,18 @@ necessary.
 
 After machine checks pass, add the feed URL to an iPhone podcast application
 and test streaming, seeking, downloading, artwork and Lecture 1→20 ordering.
+
+## CI history scope
+
+Pull-request CI keeps GitHub's synthetic merge checkout for unit tests and
+site/feed/repository validation. The history audit separately uses
+`python scripts/audit_history.py --revision <real-PR-head-SHA>` to inspect that
+commit and all of its ancestors. Push and manual CI use the real event commit.
+The synthetic merge identity is not part of the proposed repository history;
+no identity allowlist or blob-safety rule is relaxed.
+
+The local command without `--revision` still audits every local ref. Both modes
+require complete, non-shallow history. An explicit revision must resolve to one
+available commit; bad identities or forbidden historical blobs still fail even
+when removed from the final tree. Keep full-depth checkout and do not switch
+integration validation to the PR-head tree merely to satisfy the history audit.
